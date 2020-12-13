@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using AwesomeStone.Core.Entidades;
+using System.Threading.Tasks;
 
 namespace AwesomeStone.Core.Intefaces
 {
-    interface IEmployeeRepository
+    public interface IEmployeeRepository
     {
+        Task AddAsync(Employee employee);
+
     }
 }
