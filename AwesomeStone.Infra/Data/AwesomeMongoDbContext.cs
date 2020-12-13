@@ -11,7 +11,7 @@ namespace AwesomeStone.Infra.Data
     {
         private readonly IMongoDatabase _database;
 
-        public BankMongoDbContext(IOptions<MongoDbConfig> config)
+        public AwesomeMongoDbContext(IOptions<Config.MongoDbConfig> config)
         {
             var client = new MongoClient(config.Value.ConnectionString);
             _database = client.GetDatabase(config.Value.Database);
