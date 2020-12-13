@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "0j4Fc8i8SitVwFkc7RB4H2l2463SlvZMctIMFocaJ0XTYRO0kQ99KaEO7HWKNYe6baKhUBN2Xsdx1PFyWg3otw==",
+  "dgSpecHash": "QBymVWkx/RPv//BlaTs/uyOQwM33Tub2QfxKB+V1rGXGQD3aTVRsKSkdG7bkHLMjyKoCvJ8WxUgmxV4VfW6KFw==",
   "success": true,
   "projectFilePath": "C:\\Users\\gemir\\source\\repos\\AwesomeStone\\AwesomeStone\\src\\AwesomeStone.Core\\AwesomeStone.Core.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\gemir\\.nuget\\packages\\flunt\\1.0.5\\flunt.1.0.5.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "4WLpe4uRVobLosKhiR4JeA62ZJz6IXOkzm7Nz82hkpxK77pntq3d/CAXxBe7SN5N5NcWJKolPDiHeDryLSVufQ==",
+  "dgSpecHash": "sIQ0SEElV/XMzQsOEIUwGXjV1JbOeruYtKxnbAAkcGUAq3K2Z1gzFeNkl99UmlQwUqN9+7cUPeevI/MgPZMs0w==",
   "success": true,
   "projectFilePath": "C:\\Users\\gemir\\source\\repos\\AwesomeStone\\AwesomeStone\\AwesomeStone.Infra\\AwesomeStone.Infra.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\gemir\\.nuget\\packages\\dnsclient\\1.3.1\\dnsclient.1.3.1.nupkg.sha512",
+    "C:\\Users\\gemir\\.nuget\\packages\\flunt\\1.0.5\\flunt.1.0.5.nupkg.sha512",
     "C:\\Users\\gemir\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\5.0.0\\microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\gemir\\.nuget\\packages\\microsoft.extensions.options\\5.0.0\\microsoft.extensions.options.5.0.0.nupkg.sha512",
     "C:\\Users\\gemir\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512",
