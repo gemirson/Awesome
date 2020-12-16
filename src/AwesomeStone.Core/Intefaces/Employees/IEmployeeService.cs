@@ -7,8 +7,9 @@ namespace AwesomeStone.Core.Intefaces.Employees
 {
     public interface IEmployeeService
     {
-        int Calculate_Admission_Diference_Date(Employee employee);
-        int Calculate_Weight_per_Salary_Range(int number_salary);
+        public decimal GetBonus(Employee employee);
+     
+       
     }
         
 }
