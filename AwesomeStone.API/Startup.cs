@@ -1,3 +1,4 @@
+using AwesomeStone.API.Common.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +27,7 @@ namespace AwesomeStone.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSwaggerConfig();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,10 +44,18 @@ namespace AwesomeStone.API
 
             app.UseAuthorization();
 
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+            app.UseSwagger();
+            app.UseSwaggerUI(
+                options =>
+                {
+                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "V1");
+                    options.RoutePrefix = string.Empty;
+                });
         }
     }
 }
