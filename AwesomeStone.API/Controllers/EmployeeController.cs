@@ -1,15 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace AwesomeStone.API.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class EmployeeController : ControllerBase
+   
+    public class EmployeeController : BaseController
     {
         
         private readonly ILogger<EmployeeController> _logger;
@@ -19,7 +17,16 @@ namespace AwesomeStone.API.Controllers
             _logger = logger;
         }
 
+        
+        /// <summary>
+        /// Solicita o saldo
+        /// </summary>
+        /// <remarks>
+        /// </remarks>        
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> GetAsync()
         {
             return Ok(1);

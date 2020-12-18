@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AwesomeStone.API</name>
+    </assembly>
+    <members>
+        <member name="M:AwesomeStone.API.Controllers.EmployeeController.GetAsync">
+            <summary>
+            Solicita o saldo
+            </summary>
+            <remarks>
+            </remarks>        
+        </member>
+    </members>
+</doc>
