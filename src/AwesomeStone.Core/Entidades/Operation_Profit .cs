@@ -25,5 +25,11 @@ namespace AwesomeStone.Core.Entidades
                   .IsNotNull(Valor_Distribuido, nameof(Valor_Distribuido), " O valor a ser distribuido não pode ser nulo"));
 
         }
+
+        bool CheckValorDistruido(decimal value) {
+            if (Valor_Distribuido < value) return false;
+            Valor_Distribuido -= value;
+            return true;
+        }
     }
 }

@@ -1,8 +1,6 @@
 ﻿using AwesomeStone.Core.Entidades;
 using AwesomeStone.Core.Intefaces.Employees;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AwesomeStone.Core.Servicos
 {
