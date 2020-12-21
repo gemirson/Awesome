@@ -7,6 +7,7 @@ using AwesomeStone.Core.Intefaces.Business;
 using AwesomeStone.Core.Intefaces.Employees;
 using AwesomeStone.Core.Response;
 using Flunt.Notifications;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,13 +21,17 @@ namespace AwesomeStone.Application
         private readonly IEmployeeRepository _employeeRepository;
         private readonly ResponseResult _response;
         private readonly IBusinessRepository _businessRepository;
+        private readonly ILogger<EmployeeApplication> _logger;
 
-        public EmployeeApplication(IEmployeeService employeesService, IEmployeeRepository employeeRepository, ResponseResult response, IBusinessRepository businessRepository)
+        public EmployeeApplication(IEmployeeService employeesService, IEmployeeRepository employeeRepository, ResponseResult response, IBusinessRepository businessRepository, ILogger<EmployeeApplication> logger)
         {
             _employeesService = employeesService;
             _employeeRepository = employeeRepository;
             _response = response;
             _businessRepository = businessRepository;
+            _logger = logger;
+
+            _logger.LogDebug(default(EventId), $"NLog injected into {nameof(EmployeeApplication)}");
         }
 
         public async Task<ResponseResult> AddAsync(IEnumerable<EmployeeRequest> employeesRequest)
@@ -91,6 +96,7 @@ namespace AwesomeStone.Application
             catch ( Exception ex)
             {
                 _response.AddNotification(new Notification(nameof(EmployeeApplication), $"Falha na operação {ex.Message}"));
+                _logger.LogDebug(999, $"Found fails to {nameof(EmployeeApplication)} in AddAsync {ex.Message}");
                 throw;
                 
             }
@@ -125,6 +131,7 @@ namespace AwesomeStone.Application
             catch (Exception ex)
             {
                 _response.AddNotification(new Notification(nameof(EmployeeApplication), $"Falha na operação {ex.Message}"));
+                _logger.LogDebug(default(EventId), $"Found fails to {nameof(EmployeeApplication)} in GetAllAsync {ex.Message}");
                 throw;
                 
             }

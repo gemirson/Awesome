@@ -24,7 +24,7 @@ namespace AwesomeStone.API.Controllers
         {
             _logger = logger;
             _businessAplication = businessAplication;
-            _logger.LogDebug(0, $"NLog injected into {nameof(BusinessController)}");
+            _logger.LogDebug(default(EventId), $"NLog injected into {nameof(BusinessController)}");
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace AwesomeStone.API.Controllers
 
             if (result.HasFails)
             {
-                _logger.LogDebug(999, $"Found fails to {nameof(BusinessController)} in BonusCreate {result.Fails}");
+                _logger.LogDebug(default(EventId), $"Found fails to {nameof(BusinessController)} in BonusCreate {result.Fails}");
                 return BadRequest(result.Fails); 
             }
             return this.Ok(result.Data);
