@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Flunt" Version="1.0.5" />
+    <PackageReference Include="MongoDB.Bson" Version="2.11.5" />
   </ItemGroup>
 
 </Project>

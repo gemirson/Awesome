@@ -2,6 +2,9 @@
 using AwesomeStone.Core.Intefaces;
 using System.Threading.Tasks;
 using AwesomeStone.Core.Entidades;
+using System.Collections.Generic;
+using MongoDB.Driver;
+using MongoDB.Bson;
 
 namespace AwesomeStone.Infra.Repository
 {
@@ -18,6 +21,11 @@ namespace AwesomeStone.Infra.Repository
         {
             await _awesomeMongoDbContext.Operacao.InsertOneAsync(employee);
          
+        }
+
+        public async Task<IEnumerable<Employee>> GetAllAsync()
+        {
+            return await  _awesomeMongoDbContext.Operacao.Find(new BsonDocument()).ToListAsync();
         }
     }
 }

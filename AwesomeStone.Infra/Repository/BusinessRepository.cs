@@ -1,4 +1,5 @@
-﻿using AwesomeStone.Core.Intefaces.Business;
+﻿using AwesomeStone.Core.Entidades;
+using AwesomeStone.Core.Intefaces.Business;
 using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Threading.Tasks;
@@ -14,14 +15,14 @@ namespace AwesomeStone.Infra.Repository
             _memoryCache = memoryCache;
         }
 
-        public void Add(string key,string value)
+        public void Add(string key, Operation_Profit value)
         {
             _memoryCache.Set(key,value);
         }
 
-        public string GetAll(string key)
+        public Operation_Profit GetAll(string key)
         {
-           return  (string)_memoryCache.Get(key);
+            return  _memoryCache.Get<Operation_Profit>(key);
         }
     }
 }

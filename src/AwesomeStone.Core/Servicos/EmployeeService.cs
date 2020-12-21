@@ -11,10 +11,10 @@ namespace AwesomeStone.Core.Servicos
 
         private readonly IBonus _bonus;
         private readonly OfficeFactory _officeFactory;
-        private readonly WeigthAdmission _weigthAdmission;
-        private readonly WeigthSalary _weigthSalary;
+        private readonly IWeigth _weigthAdmission;
+        private readonly IWeigth _weigthSalary;
 
-        public EmployeeService(IBonus bonus, OfficeFactory officeFactory, WeigthAdmission weigthAdmission, WeigthSalary weigthSalary)
+        public EmployeeService(IBonus bonus, OfficeFactory officeFactory, IWeigth weigthAdmission, IWeigth weigthSalary)
         {
             _bonus = bonus;
             _officeFactory = officeFactory;
@@ -27,12 +27,12 @@ namespace AwesomeStone.Core.Servicos
             float number_salary =  Calculate_Number_Salary(employee);
             float number_Year   = Calculate_Number_Year(employee);
 
-            return _bonus.CalculateBonus(_officeFactory.GetWeightOffice(employee.Cargo),
+            return _bonus.CalculateBonus(_officeFactory.GetWeightOffice(employee.Area),
                                          _weigthSalary.GetWeigth(number_salary),
                                          _weigthAdmission.GetWeigth(number_Year), employee.Salario_bruto) ;
         }
               
-        private float Calculate_Number_Salary(Employee employee) => (float)(employee.Salario_bruto / minimum_salary);
-        private float Calculate_Number_Year(Employee employee) =>(float)(DateTime.Now.Subtract(employee.Data_de_Admissao).TotalDays / 365.0);
+        internal float Calculate_Number_Salary(Employee employee) => (float)(employee.Salario_bruto / minimum_salary);
+        internal float Calculate_Number_Year(Employee employee) =>(float)(DateTime.Now.Subtract(employee.Data_de_Admissao).TotalDays / 365.0);
     }
 }

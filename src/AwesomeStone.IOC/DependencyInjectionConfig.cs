@@ -1,6 +1,7 @@
 ﻿using AwesomeStone.Application;
 using AwesomeStone.Application.Interfaces;
 using AwesomeStone.Core.Intefaces;
+using AwesomeStone.Core.Intefaces.Business;
 using AwesomeStone.Core.Intefaces.Employees;
 using AwesomeStone.Core.Response;
 using AwesomeStone.Core.Servicos;
@@ -16,7 +17,8 @@ namespace AwesomeStone.IOC
     {
         public static IServiceCollection ResolveDependencies(this IServiceCollection services, IConfiguration config)
         {
-           
+          
+
             services.AddTransient<IOfficeStrategy, Accounting>();
             services.AddTransient<IOfficeStrategy, CFO>();
             services.AddTransient<IOfficeStrategy, CustomerRelationship>();
@@ -28,11 +30,10 @@ namespace AwesomeStone.IOC
             services.AddTransient<ResponseResult>();
             services.AddTransient<IEmployeeService, EmployeeService>();
             services.AddTransient<IEmployeeRepository,  EmployeeRepository>();
+            services.AddTransient<IBusinessRepository, BusinessRepository>();
             services.AddTransient<IEmployeesApplication, EmployeeApplication>();
+            services.AddTransient<IBusinessApplication, BusinessApplication>();
 
-            
-           
-           
 
             services.AddScoped<IEmployeesApplication, EmployeeApplication>();
 

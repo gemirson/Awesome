@@ -7,29 +7,44 @@ namespace AwesomeStone.Core.Entidades
 {
     public class Operation_Profit : Entidade
     {
-
-        public decimal Valor_Distribuido { get; private set;}
+        private readonly decimal Distributed_Value;
+        public decimal Value_Bonus { get; private set; }
         public Operation_Profit(decimal valor_Distribuido)
         {
-            Valor_Distribuido = valor_Distribuido;
+            Value_Bonus = valor_Distribuido;
+            Distributed_Value = valor_Distribuido;
         }
 
         public override void Validate()
         {
             AddNotifications(new Contract()
               .Requires()
-              .IsGreaterThan(Valor_Distribuido, 0, nameof(Valor_Distribuido), "O valor a ser distribuido bruto tem que ser maior que zero"));
+              .IsGreaterThan(Value_Bonus, 0, nameof(Value_Bonus), "O valor a ser distribuido bruto tem que ser maior que zero"));
 
             AddNotifications(new Contract()
                   .Requires()
-                  .IsNotNull(Valor_Distribuido, nameof(Valor_Distribuido), " O valor a ser distribuido não pode ser nulo"));
+                  .IsNotNull(Value_Bonus, nameof(Value_Bonus), " O valor a ser distribuido não pode ser nulo"));
 
         }
 
-        bool CheckValorDistruido(decimal value) {
-            if (Valor_Distribuido < value) return false;
-            Valor_Distribuido -= value;
+        public bool CheckDistributed_Value(decimal value) {
+            if (Value_Bonus > value) {
+                Value_Bonus -= value;
+                return false;
+            }
+            
             return true;
         }
+
+        public decimal Total_Available()
+        {
+            return Distributed_Value;
+        }
+
+        public decimal Total_Balance_Available()
+        {
+            return Distributed_Value -  Value_Bonus;
+        }
+       
     }
 }

@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AwesomeStone.Application\AwesomeStone.Application.csproj" />
+    <ProjectReference Include="..\src\AwesomeStone.IOC\AwesomeStone.IOC.csproj" />
   </ItemGroup>
 
 

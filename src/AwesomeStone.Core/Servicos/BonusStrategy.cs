@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AwesomeStone.Core.Servicos
+﻿namespace AwesomeStone.Core.Servicos
 {
     public class BonusStrategy : Intefaces.Employees.IBonus
     {

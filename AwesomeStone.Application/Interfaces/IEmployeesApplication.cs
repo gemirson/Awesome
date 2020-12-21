@@ -11,6 +11,8 @@ namespace AwesomeStone.Application.Interfaces
     public interface IEmployeesApplication
     {
         Task<ResponseResult> AddAsync(IEnumerable<EmployeeRequest> employeesRequest);
-        Task InsertBonus();
+        Task<ResponseResult> GetAllAsync();
+
+
     }
 }

@@ -3,13 +3,29 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwesomeStone.Core", "src\AwesomeStone.Core\AwesomeStone.Core.csproj", "{1C35D94C-614B-49FD-9C59-CE7A1F40642B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeStone.Core", "src\AwesomeStone.Core\AwesomeStone.Core.csproj", "{1C35D94C-614B-49FD-9C59-CE7A1F40642B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwesomeStone.Infra", "AwesomeStone.Infra\AwesomeStone.Infra.csproj", "{20CA0B5B-8F0E-4DA1-9D5F-DFE924688042}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeStone.Infra", "AwesomeStone.Infra\AwesomeStone.Infra.csproj", "{20CA0B5B-8F0E-4DA1-9D5F-DFE924688042}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwesomeStone.API", "AwesomeStone.API\AwesomeStone.API.csproj", "{9A214136-1661-43D8-A70D-052B3DFD358C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeStone.API", "AwesomeStone.API\AwesomeStone.API.csproj", "{9A214136-1661-43D8-A70D-052B3DFD358C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwesomeStone.Application", "AwesomeStone.Application\AwesomeStone.Application.csproj", "{FC678384-126F-4C9F-A809-F3A8691E83D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeStone.Application", "AwesomeStone.Application\AwesomeStone.Application.csproj", "{FC678384-126F-4C9F-A809-F3A8691E83D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwesomeStone.IOC", "src\AwesomeStone.IOC\AwesomeStone.IOC.csproj", "{4E5E390B-469D-4CA4-A1DC-AAF72982F128}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{EE7CC5D8-F2A8-4323-A247-78EA47866BB2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{5460E05F-3127-45A2-9C71-936BACAF9590}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwesomeStone.Application.Tests", "src\AwesomeStone.Application.Tests\AwesomeStone.Application.Tests.csproj", "{3C49409A-EBFE-46D4-8E8A-2778C8541A8E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{5EF79A9C-666D-4744-935E-ED5C41212D63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwesomeStone.Core.Tests", "src\AwesomeStone.Core.Test\AwesomeStone.Core.Tests.csproj", "{44EDBF6D-64D0-46D8-83E8-484E1E452AB7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{8FDAE746-8AA3-4252-8E21-5ADFA3045578}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwesomeStone.API.Tests", "src\AwesomeStone.API.Tests\AwesomeStone.API.Tests.csproj", "{522C3EC1-A90A-4419-A87A-80EE1454F217}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,9 +49,33 @@ Global
 		{FC678384-126F-4C9F-A809-F3A8691E83D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC678384-126F-4C9F-A809-F3A8691E83D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC678384-126F-4C9F-A809-F3A8691E83D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E5E390B-469D-4CA4-A1DC-AAF72982F128}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E5E390B-469D-4CA4-A1DC-AAF72982F128}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E5E390B-469D-4CA4-A1DC-AAF72982F128}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E5E390B-469D-4CA4-A1DC-AAF72982F128}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C49409A-EBFE-46D4-8E8A-2778C8541A8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C49409A-EBFE-46D4-8E8A-2778C8541A8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C49409A-EBFE-46D4-8E8A-2778C8541A8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C49409A-EBFE-46D4-8E8A-2778C8541A8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44EDBF6D-64D0-46D8-83E8-484E1E452AB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44EDBF6D-64D0-46D8-83E8-484E1E452AB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44EDBF6D-64D0-46D8-83E8-484E1E452AB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44EDBF6D-64D0-46D8-83E8-484E1E452AB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{522C3EC1-A90A-4419-A87A-80EE1454F217}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{522C3EC1-A90A-4419-A87A-80EE1454F217}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{522C3EC1-A90A-4419-A87A-80EE1454F217}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{522C3EC1-A90A-4419-A87A-80EE1454F217}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5460E05F-3127-45A2-9C71-936BACAF9590} = {EE7CC5D8-F2A8-4323-A247-78EA47866BB2}
+		{3C49409A-EBFE-46D4-8E8A-2778C8541A8E} = {5460E05F-3127-45A2-9C71-936BACAF9590}
+		{5EF79A9C-666D-4744-935E-ED5C41212D63} = {EE7CC5D8-F2A8-4323-A247-78EA47866BB2}
+		{44EDBF6D-64D0-46D8-83E8-484E1E452AB7} = {5EF79A9C-666D-4744-935E-ED5C41212D63}
+		{8FDAE746-8AA3-4252-8E21-5ADFA3045578} = {EE7CC5D8-F2A8-4323-A247-78EA47866BB2}
+		{522C3EC1-A90A-4419-A87A-80EE1454F217} = {8FDAE746-8AA3-4252-8E21-5ADFA3045578}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ABEF7F9C-797A-47C3-B11F-8AE99B5FF8F8}

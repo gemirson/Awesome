@@ -9,10 +9,10 @@ namespace AwesomeStone.Core.Servicos
         new WeigthCondition[]
         {
    
-        new WeigthCondition(m => m > 8, m => 5 ),
-        new WeigthCondition(m => m < 8 && m > 5, m=>3),
-        new WeigthCondition(m => m < 5 && m > 3, m => 2),
-        new WeigthCondition(m => m <=3 && m > 0, m => 1),
+        new WeigthCondition(m => m > 8.0f, m => 5 ),
+        new WeigthCondition(m => m < 8.0f && m > 5.0f, m => 3),
+        new WeigthCondition(m => m < 5.0f && m > 3.0f, m => 2),
+        new WeigthCondition(m => m <=3.0f && m > 0.0f, m => 1),
                                                            
     
         };
