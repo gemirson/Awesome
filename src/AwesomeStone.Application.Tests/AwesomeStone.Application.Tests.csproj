@@ -24,8 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\AwesomeStone.Application\AwesomeStone.Application.csproj" />
-    <ProjectReference Include="..\..\AwesomeStone.Infra\AwesomeStone.Infra.csproj" />
+    <ProjectReference Include="..\AwesomeStone.Application\AwesomeStone.Application.csproj" />
+    <ProjectReference Include="..\AwesomeStone.Core\AwesomeStone.Core.csproj" />
+    <ProjectReference Include="..\AwesomeStone.Infra\AwesomeStone.Infra.csproj" />
   </ItemGroup>
 
 </Project>

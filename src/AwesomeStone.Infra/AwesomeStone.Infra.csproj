@@ -11,7 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\AwesomeStone.Core\AwesomeStone.Core.csproj" />
+    <ProjectReference Include="..\AwesomeStone.Core\AwesomeStone.Core.csproj" />
+    <ProjectReference Include="..\AwesomeStone.Core\AwesomeStone.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,8 +1,6 @@
 ﻿using AwesomeStone.Core.Entidades;
 using AwesomeStone.Core.Intefaces.Business;
 using Microsoft.Extensions.Caching.Memory;
-using System;
-using System.Threading.Tasks;
 
 namespace AwesomeStone.Infra.Repository
 {

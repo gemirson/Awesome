@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AwesomeStone.Core\AwesomeStone.Core.csproj" />
+    <ProjectReference Include="..\AwesomeStone.Infra\AwesomeStone.Infra.csproj" />
+    <ProjectReference Include="..\AwesomeStone.Core\AwesomeStone.Core.csproj" />
+  </ItemGroup>
+
+</Project>

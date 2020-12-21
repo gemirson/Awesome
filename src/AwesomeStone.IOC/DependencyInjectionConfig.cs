@@ -5,8 +5,6 @@ using AwesomeStone.Core.Intefaces.Business;
 using AwesomeStone.Core.Intefaces.Employees;
 using AwesomeStone.Core.Response;
 using AwesomeStone.Core.Servicos;
-using AwesomeStone.Infra.Data;
-using AwesomeStone.Infra.Data.Config;
 using AwesomeStone.Infra.Repository;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,8 +31,6 @@ namespace AwesomeStone.IOC
             services.AddTransient<IBusinessRepository, BusinessRepository>();
             services.AddTransient<IEmployeesApplication, EmployeeApplication>();
             services.AddTransient<IBusinessApplication, BusinessApplication>();
-
-
             services.AddScoped<IEmployeesApplication, EmployeeApplication>();
 
             return services;

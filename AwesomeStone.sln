@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeStone.Core", "src\AwesomeStone.Core\AwesomeStone.Core.csproj", "{1C35D94C-614B-49FD-9C59-CE7A1F40642B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeStone.Infra", "AwesomeStone.Infra\AwesomeStone.Infra.csproj", "{20CA0B5B-8F0E-4DA1-9D5F-DFE924688042}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeStone.Infra", "src\AwesomeStone.Infra\AwesomeStone.Infra.csproj", "{20CA0B5B-8F0E-4DA1-9D5F-DFE924688042}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeStone.API", "AwesomeStone.API\AwesomeStone.API.csproj", "{9A214136-1661-43D8-A70D-052B3DFD358C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeStone.API", "src\AwesomeStone.API\AwesomeStone.API.csproj", "{9A214136-1661-43D8-A70D-052B3DFD358C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeStone.Application", "AwesomeStone.Application\AwesomeStone.Application.csproj", "{FC678384-126F-4C9F-A809-F3A8691E83D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeStone.Application", "src\AwesomeStone.Application\AwesomeStone.Application.csproj", "{FC678384-126F-4C9F-A809-F3A8691E83D8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwesomeStone.IOC", "src\AwesomeStone.IOC\AwesomeStone.IOC.csproj", "{4E5E390B-469D-4CA4-A1DC-AAF72982F128}"
 EndProject

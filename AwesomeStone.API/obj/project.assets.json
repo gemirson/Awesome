@@ -1429,7 +1429,9 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
-          "AwesomeStone.Core": "1.0.0"
+          "AwesomeStone.Core": "1.0.0",
+          "AwesomeStone.Infra": "1.0.0",
+          "C:\\Users\\gemir\\source\\repos\\AwesomeStone\\AwesomeStone\\src\\src\\AwesomeStone.Core\\AwesomeStone.Core.csproj": "1.0.0"
         },
         "compile": {
           "bin/placeholder/AwesomeStone.Application.dll": {}
@@ -1457,6 +1459,7 @@
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "AwesomeStone.Core": "1.0.0",
+          "C:\\Users\\gemir\\source\\repos\\AwesomeStone\\AwesomeStone\\src\\src\\AwesomeStone.Core\\AwesomeStone.Core.csproj": "1.0.0",
           "Microsoft.Extensions.Caching.Abstractions": "3.1.10",
           "Microsoft.Extensions.Options": "3.1.0",
           "MongoDB.Driver": "2.11.5"
@@ -5117,8 +5120,8 @@
     },
     "AwesomeStone.Application/1.0.0": {
       "type": "project",
-      "path": "../AwesomeStone.Application/AwesomeStone.Application.csproj",
-      "msbuildProject": "../AwesomeStone.Application/AwesomeStone.Application.csproj"
+      "path": "../src/AwesomeStone.Application/AwesomeStone.Application.csproj",
+      "msbuildProject": "../src/AwesomeStone.Application/AwesomeStone.Application.csproj"
     },
     "AwesomeStone.Core/1.0.0": {
       "type": "project",
@@ -5127,8 +5130,8 @@
     },
     "AwesomeStone.Infra/1.0.0": {
       "type": "project",
-      "path": "../AwesomeStone.Infra/AwesomeStone.Infra.csproj",
-      "msbuildProject": "../AwesomeStone.Infra/AwesomeStone.Infra.csproj"
+      "path": "../src/AwesomeStone.Infra/AwesomeStone.Infra.csproj",
+      "msbuildProject": "../src/AwesomeStone.Infra/AwesomeStone.Infra.csproj"
     },
     "AwesomeStone.IOC/1.0.0": {
       "type": "project",
@@ -5230,5 +5233,16 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1104",
+      "level": "Error",
+      "message": "Não é possível encontrar o projeto 'C:\\Users\\gemir\\source\\repos\\AwesomeStone\\AwesomeStone\\src\\src\\AwesomeStone.Core\\AwesomeStone.Core.csproj'. Verifique se a referência do projeto é válida e se o arquivo de projeto existe.",
+      "libraryId": "C:\\Users\\gemir\\source\\repos\\AwesomeStone\\AwesomeStone\\src\\src\\AwesomeStone.Core\\AwesomeStone.Core.csproj",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    }
+  ]
 }
