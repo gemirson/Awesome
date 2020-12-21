@@ -59,7 +59,7 @@ namespace AwesomeStone.API.Controllers
 
             if (result.HasFails)
             {
-                _logger.LogDebug(default(EventId), $"Found fails to {nameof(EmployeeController)} in BonusCreate {result.Fails}");
+                _logger.LogError(default(EventId), $"Found fails to {nameof(EmployeeController)} in BonusCreate {result.Fails}");
                 return BadRequest(result.Fails);
             }
 

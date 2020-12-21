@@ -96,7 +96,7 @@ namespace AwesomeStone.Application
             catch ( Exception ex)
             {
                 _response.AddNotification(new Notification(nameof(EmployeeApplication), $"Falha na operação {ex.Message}"));
-                _logger.LogDebug(999, $"Found fails to {nameof(EmployeeApplication)} in AddAsync {ex.Message}");
+                _logger.LogError(default(EventId), $"Found fails to {nameof(EmployeeApplication)} in AddAsync {ex.Message}");
                 throw;
                 
             }
@@ -131,7 +131,7 @@ namespace AwesomeStone.Application
             catch (Exception ex)
             {
                 _response.AddNotification(new Notification(nameof(EmployeeApplication), $"Falha na operação {ex.Message}"));
-                _logger.LogDebug(default(EventId), $"Found fails to {nameof(EmployeeApplication)} in GetAllAsync {ex.Message}");
+                _logger.LogError(default(EventId), $"Found fails to {nameof(EmployeeApplication)} in GetAllAsync {ex.Message}");
                 throw;
                 
             }
