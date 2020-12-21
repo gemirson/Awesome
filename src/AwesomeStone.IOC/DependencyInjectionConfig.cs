@@ -14,23 +14,22 @@ namespace AwesomeStone.IOC
     public static class DependencyInjectionConfig
     {
         public static IServiceCollection ResolveDependencies(this IServiceCollection services, IConfiguration config)
-        {
-          
+        {         
 
-            services.AddTransient<IOfficeStrategy, Accounting>();
-            services.AddTransient<IOfficeStrategy, CFO>();
-            services.AddTransient<IOfficeStrategy, CustomerRelationship>();
-            services.AddTransient<IOfficeStrategy, GeneralServices>();
-            services.AddTransient<OfficeFactory>();
-            services.AddTransient<IWeigth, WeigthAdmission>();
-            services.AddTransient<IWeigth, WeigthSalary>();
-            services.AddTransient<IBonus, BonusStrategy>();
-            services.AddTransient<ResponseResult>();
-            services.AddTransient<IEmployeeService, EmployeeService>();
-            services.AddTransient<IEmployeeRepository,  EmployeeRepository>();
-            services.AddTransient<IBusinessRepository, BusinessRepository>();
-            services.AddTransient<IEmployeesApplication, EmployeeApplication>();
-            services.AddTransient<IBusinessApplication, BusinessApplication>();
+            services.AddScoped<IOfficeStrategy, Accounting>();
+            services.AddScoped<IOfficeStrategy, CFO>();
+            services.AddScoped<IOfficeStrategy, CustomerRelationship>();
+            services.AddScoped<IOfficeStrategy, GeneralServices>();
+            services.AddScoped<OfficeFactory>();
+            services.AddScoped<IWeigth, WeigthAdmission>();
+            services.AddScoped<IWeigth, WeigthSalary>();
+            services.AddScoped<IBonus, BonusStrategy>();
+            services.AddScoped<ResponseResult>();
+            services.AddScoped<IEmployeeService, EmployeeService>();
+            services.AddScoped<IEmployeeRepository,  EmployeeRepository>();
+            services.AddScoped<IBusinessRepository, BusinessRepository>();
+            services.AddScoped<IEmployeesApplication, EmployeeApplication>();
+            services.AddScoped<IBusinessApplication, BusinessApplication>();
             services.AddScoped<IEmployeesApplication, EmployeeApplication>();
 
             return services;
