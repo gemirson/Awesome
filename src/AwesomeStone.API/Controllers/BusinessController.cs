@@ -3,6 +3,7 @@ using AwesomeStone.Application.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace AwesomeStone.API.Controllers
 {
@@ -23,6 +24,7 @@ namespace AwesomeStone.API.Controllers
         {
             _logger = logger;
             _businessAplication = businessAplication;
+            _logger.LogDebug(0, $"NLog injected into {nameof(BusinessController)}");
         }
 
         /// <summary>
@@ -46,7 +48,12 @@ namespace AwesomeStone.API.Controllers
         public ActionResult BonusCreate([FromBody] Operation_ProfitRequest operation_ProfitRequest)
         {
             var result =  _businessAplication.Add(operation_ProfitRequest);
-            if (result.HasFails) return BadRequest(result.Fails);
+
+            if (result.HasFails)
+            {
+                _logger.LogDebug(999, $"Found fails to {nameof(BusinessController)} in BonusCreate {result.Fails}");
+                return BadRequest(result.Fails); 
+            }
             return this.Ok(result.Data);
 
         }
