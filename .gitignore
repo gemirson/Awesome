@@ -53,3 +53,8 @@ bld/
 *.pidb
 *.svclog
 *.scc
+
+.vs/AwesomeStone/v16
+AwesomeStone.API/obj
+AwesomeStone.Infra/obj
+AwesomeStone.Application/obj
