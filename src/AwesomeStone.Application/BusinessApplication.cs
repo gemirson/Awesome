@@ -33,6 +33,7 @@ namespace AwesomeStone.Application
             try
             {
                 operation_ProfitRequest.Validate();
+
                 if (operation_ProfitRequest.Notifications.Any())
                 {
                     _response.AddNotifications(operation_ProfitRequest.Notifications);
@@ -53,12 +54,18 @@ namespace AwesomeStone.Application
                     Status = "Cadastro realizado com sucesso"
                 });
 
-               
+
+            }
+            catch (ArgumentNullException ex) {
+
+                _response.AddNotification(new Notification(nameof(BusinessApplication), $"Falha na operação {ex.Message}"));
+                _logger.LogError(default(EventId), $"Found fails to {nameof(BusinessApplication)} in AddAsync{ex.Message} to {nameof(operation_ProfitRequest)}");
+                throw;
             }
             catch (Exception ex)
             {
                 _response.AddNotification(new Notification(nameof(BusinessApplication), $"Falha na operação {ex.Message}"));
-                _logger.LogError(default(EventId), $"Found fails to {nameof(EmployeeApplication)} in GetAllAsync {ex.Message}");
+                _logger.LogError(default(EventId), $"Found fails to {nameof(BusinessApplication)} in AddAsync{ex.Message} to {nameof(operation_ProfitRequest)}");
                 throw;
             }
 

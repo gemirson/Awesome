@@ -82,6 +82,24 @@
             <param name="context"></param>
             <returns></returns>
         </member>
+        <member name="T:AwesomeStone.API.Program">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AwesomeStone.API.Program.Main(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:AwesomeStone.API.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
         <member name="T:AwesomeStone.API.Startup">
             <summary>
             

@@ -6,6 +6,7 @@ using AwesomeStone.Core.Intefaces;
 using AwesomeStone.Core.Intefaces.Business;
 using AwesomeStone.Core.Intefaces.Employees;
 using AwesomeStone.Core.Response;
+using AwesomeStone.Infra.Data.Interfaces;
 using Flunt.Notifications;
 using Microsoft.Extensions.Logging;
 using System;
@@ -18,18 +19,16 @@ namespace AwesomeStone.Application
     public class EmployeeApplication : IEmployeesApplication
     {
         private readonly IEmployeeService _employeesService;
-        private readonly IEmployeeRepository _employeeRepository;
         private readonly ResponseResult _response;
-        private readonly IBusinessRepository _businessRepository;
         private readonly ILogger<EmployeeApplication> _logger;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public EmployeeApplication(IEmployeeService employeesService, IEmployeeRepository employeeRepository, ResponseResult response, IBusinessRepository businessRepository, ILogger<EmployeeApplication> logger)
+        public EmployeeApplication(IEmployeeService employeesService, ResponseResult response, IUnitOfWork unitOfWork, ILogger<EmployeeApplication> logger)
         {
             _employeesService = employeesService;
-            _employeeRepository = employeeRepository;
             _response = response;
-            _businessRepository = businessRepository;
             _logger = logger;
+            _unitOfWork = unitOfWork;
 
             _logger.LogDebug(default(EventId), $"NLog injected into {nameof(EmployeeApplication)}");
         }
@@ -41,7 +40,7 @@ namespace AwesomeStone.Application
 
                 var listParticipation = new List<ViewParticipation>();
 
-                var Operation_Profit = _businessRepository.GetAll("teste");
+                var Operation_Profit = _unitOfWork.Business.GetAll("teste");
 
                 if (Operation_Profit == null)
                 {
@@ -72,7 +71,7 @@ namespace AwesomeStone.Application
                     }
 
                     entidade.SetBonus(bonus);
-                    await _employeeRepository.AddAsync(entidade);
+                    await _unitOfWork.Employee.AddAsync(entidade);
 
                     listParticipation.Add(new ViewParticipation
                     {
@@ -110,7 +109,7 @@ namespace AwesomeStone.Application
             try
             {
                 var listParticipation = new List<ViewParticipation>();
-                var employees = await _employeeRepository.GetAllAsync();
+                var employees = await _unitOfWork.Employee.GetAllAsync();
                 foreach (Employee employee in employees)
                 {
                     listParticipation.Add(new ViewParticipation
