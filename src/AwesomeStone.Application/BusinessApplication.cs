@@ -1,7 +1,6 @@
 ﻿using AwesomeStone.Application.Command.Request;
 using AwesomeStone.Application.Interfaces;
 using AwesomeStone.Core.Entidades;
-using AwesomeStone.Core.Intefaces.Business;
 using AwesomeStone.Core.Response;
 using AwesomeStone.Infra.Data.Interfaces;
 using Flunt.Notifications;
