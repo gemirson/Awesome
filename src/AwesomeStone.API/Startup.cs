@@ -77,6 +77,7 @@ namespace AwesomeStone.API
             services.AddControllers();
             services.AddSwaggerConfig();
             services.ResolveDependencies(this.Configuration);
+            services.AddMetricsTrackingMiddleware();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -95,6 +96,10 @@ namespace AwesomeStone.API
             }
 
             app.UseHttpsRedirection();
+
+            app.UseMetricsAllEndpoints();
+
+            app.UseMetricsAllMiddleware();
 
             app.UseRouting();
 
