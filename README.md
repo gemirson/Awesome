@@ -18,6 +18,8 @@ seja, o montante disponibilizado pode ser insuficiente.
 - Swagger UI with JWT support
 - Teste Unitário
 - Teste integração
+- Nlog
+- Metricas com InfluxDB
 
 ## Arquitetura
 
@@ -25,7 +27,8 @@ seja, o montante disponibilizado pode ser insuficiente.
 - Arquitetura Hexagonal
 - CQRS
 - Unit of Work
-- Repository
+- Repository Pattern
+- Design Pattern
 
 ## Devs
 - Gemirson Silva - https://github.com/gemirson
