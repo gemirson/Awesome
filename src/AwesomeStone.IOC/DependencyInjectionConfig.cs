@@ -17,11 +17,7 @@ namespace AwesomeStone.IOC
     {
         public static IServiceCollection ResolveDependencies(this IServiceCollection services, IConfiguration config)
         {         
-
-            services.AddScoped<IOfficeStrategy, Accounting>();
-            services.AddScoped<IOfficeStrategy, CFO>();
-            services.AddScoped<IOfficeStrategy, CustomerRelationship>();
-            services.AddScoped<IOfficeStrategy, GeneralServices>();
+                        
             services.AddScoped<OfficeFactory>();
             services.AddScoped<IWeigth, WeigthAdmission>();
             services.AddScoped<IWeigth, WeigthSalary>();
