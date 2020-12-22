@@ -34,7 +34,6 @@ namespace AwesomeStone.IOC
             services.AddScoped<IEmployeesApplication, EmployeeApplication>();
             services.AddScoped<IBusinessApplication, BusinessApplication>();
            
-
             return services;
         }
     }

@@ -1,28 +1,25 @@
 ﻿using AwesomeStone.Application.Command.Request;
 using AwesomeStone.Application.Interfaces;
 using AwesomeStone.Core.Entidades;
-using AwesomeStone.Core.Intefaces;
 using AwesomeStone.Core.Intefaces.Business;
 using AwesomeStone.Core.Response;
+using AwesomeStone.Infra.Data.Interfaces;
 using Flunt.Notifications;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AwesomeStone.Application
 {
     public class BusinessApplication : IBusinessApplication
     {
-        private readonly IBusinessRepository _businessRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly ResponseResult _response;
         private readonly ILogger<BusinessApplication> _logger;
 
-        public BusinessApplication(IBusinessRepository businessRepository, ResponseResult response, ILogger<BusinessApplication> logger)
+        public BusinessApplication(IUnitOfWork unitOfWork, ResponseResult response, ILogger<BusinessApplication> logger)
         {
-            _businessRepository = businessRepository;
+            _unitOfWork = unitOfWork;
             _response = response;
             _logger = logger;
             _logger.LogDebug(default(EventId), $"NLog injected into {nameof(BusinessApplication)}");
@@ -47,7 +44,7 @@ namespace AwesomeStone.Application
                 }
 
                 var entidade = new Operation_Profit(value);
-                _businessRepository.Add("teste", entidade);
+                _unitOfWork.Business.Add("teste", entidade);
 
                 _response.AddValue(new
                 {
@@ -75,7 +72,7 @@ namespace AwesomeStone.Application
 
         public Operation_Profit Get(string key)
         {
-           return  _businessRepository.GetAll(key);
+           return  _unitOfWork.Business.GetAll(key);
         }
     }
 }
