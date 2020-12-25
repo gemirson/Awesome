@@ -1,14 +1,10 @@
-﻿using Flunt.Validations;
-using MongoDB.Bson.Serialization.Attributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace AwesomeStone.Core.Entidades
 {
     public class Employee: Entidade
-    {
-        
+    {        
         public string Matricula { get; private set; }
         public string Nome { get; private set; }
         public string Area { get; private set; }
@@ -30,9 +26,12 @@ namespace AwesomeStone.Core.Entidades
             Bonus = _bonus;
             Data_de_Admissao = _data_de_Admissao;
 
+            Validate();
+
         }
 
         public void SetBonus(decimal _bonus) {
+            if (_bonus < 0.0m) throw new  DomainException("O valor do bonus não pode ser menor que zero");
             Bonus = _bonus;
         }
         public override bool Equals(object obj)
@@ -53,27 +52,12 @@ namespace AwesomeStone.Core.Entidades
 
         public override void Validate()
         {
-            AddNotifications(new Contract()
-              .Requires()
-              .IsGreaterThan(Salario_bruto, 0, nameof(Salario_bruto), "O valor do salaário bruto tem que ser maior que zero"));
-
-            AddNotifications(new Contract()
-                  .Requires()
-                  .IsNotNull(Data_de_Admissao, nameof(Data_de_Admissao), " A data de admissão não pode ser nula"));
-
-            AddNotifications(new Contract()
-                  .Requires()
-                  .IsNotNull(Cargo, nameof(Cargo), " O cargo não pode ser nulo"));
-
-            AddNotifications(new Contract()
-                 .Requires()
-                 .IsNotNull(Area, nameof(Area), " A area não pode ser nula"));
-
-            AddNotifications(new Contract()
-                  .Requires()
-                  .IsNotNull(Matricula, nameof(Matricula), " A matricula não pode ser nula"));
-
-            
+            Validacoes.ValidarSeMenorQue(Salario_bruto, 0.0m, "O valor do salaário bruto tem que ser maior que zero");
+            Validacoes.ValidarSeNulo(Data_de_Admissao,"O valor do salaário bruto tem que ser maior que zero");
+            Validacoes.ValidarSeNulo(Cargo, "O cargo não pode ser nulo");
+            Validacoes.ValidarSeNulo(Area, "A area não pode ser nula");
+            Validacoes.ValidarSeNulo(Matricula, "A matricula não pode ser nula");
+                  
         }
 
         public static bool operator ==(Employee left, Employee right)
