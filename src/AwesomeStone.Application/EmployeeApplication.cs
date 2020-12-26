@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
 
 namespace AwesomeStone.Application
 {
@@ -22,103 +23,118 @@ namespace AwesomeStone.Application
         private readonly ResponseResult _response;
         private readonly ILogger<EmployeeApplication> _logger;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IOptions<CacheConfig> _cacheConfig;
 
-        public EmployeeApplication(IEmployeeService employeesService, ResponseResult response, IUnitOfWork unitOfWork, ILogger<EmployeeApplication> logger)
+        public EmployeeApplication(IEmployeeService employeesService, ILogger<EmployeeApplication> logger, IUnitOfWork unitOfWork, IOptions<CacheConfig> cacheConfig)
         {
             _employeesService = employeesService;
-            _response = response;
+            _response = new ResponseResult();
             _logger = logger;
             _unitOfWork = unitOfWork;
-
+            _cacheConfig = cacheConfig;
             _logger.LogDebug(default(EventId), $"NLog injected into {nameof(EmployeeApplication)}");
         }
+   
 
         public async Task<ResponseResult> AddAsync(IEnumerable<EmployeeRequest> employeesRequest)
         {
             try
             {
-
                 var listParticipation = new List<ViewParticipation>();
-
-                var Operation_Profit = _unitOfWork.Business.GetAll("teste");
-
-                if (Operation_Profit == null)
+                var operationProfit = _unitOfWork.Business.GetAll(_cacheConfig.Value.Key);
+                if (operationProfit is null)
                 {
-                    _response.AddNotification(new Notification(nameof(EmployeeApplication), $"Falha na operação, o valor disponibilizado não pode ser nulo"));
+                    _response.AddNotification(new Notification(nameof(EmployeeApplication),
+                        $"Falha na operação, o valor disponibilizado não pode ser nulo"));
                     return _response;
                 }
+                await CreateEmployeesAsync(employeesRequest, operationProfit, listParticipation);
+                FillViewParticipationEmployee(listParticipation, operationProfit);
+            }
+            catch (Exception ex)
+            {
+                _response.AddNotification(new Notification(nameof(EmployeeApplication),
+                    $"Falha na operação {ex.Message}"));
+                _logger.LogError(default(EventId),
+                    $"Found fails to {nameof(EmployeeApplication)} in AddAsync {ex.Message}");
+                throw;
+            }
+            return _response;
+        }
 
-                foreach (EmployeeRequest employeeRequest in employeesRequest)
+        private async Task<bool> CreateEmployeesAsync(IEnumerable<EmployeeRequest> employeesRequest,
+            Operation_Profit operationProfit,
+            ICollection<ViewParticipation> listParticipation)
+        {
+            foreach (var employeeRequest in employeesRequest)
+            {
+                employeeRequest.Validate();
+
+                if (employeeRequest.Notifications.Any())
                 {
-                    employeeRequest.Validate();
-
-                    if (employeeRequest.Notifications.Any())
-                    {
-                        _response.AddNotifications(employeeRequest.Notifications);
-                        return _response;
-                    }
-
-                    var entidade = new Employee(employeeRequest.matricula, employeeRequest.nome, employeeRequest.area, employeeRequest.cargo, Convert.ToDecimal(employeeRequest.salario_bruto.Remove(0, 3)), 0.0m, employeeRequest.data_de_admissao);
-
-                    decimal bonus = _employeesService.GetBonus(entidade);
-
-
-                    if (Operation_Profit.CheckDistributed_Value(bonus))
-                    {
-                        _response.AddNotification(new Notification(nameof(EmployeeApplication), $"Falha na operação, o valor disponibilizado é insuficiente para atender todos o funcionarios "));
-                        return _response;
-
-                    }
-
-                    entidade.SetBonus(bonus);
-                    await _unitOfWork.Employee.AddAsync(entidade);
-
-                    listParticipation.Add(new ViewParticipation
-                    {
-                        matricula = employeeRequest.matricula,
-                        nome = employeeRequest.nome,
-                        valor_da_participação = String.Format("{0:C}", bonus)
-                    });
+                    _response.AddNotifications(employeeRequest.Notifications);
+                    return true;
                 }
 
-                _response.AddValue(new Data
+                var entidade = new Employee(employeeRequest.matricula, employeeRequest.nome, employeeRequest.area,
+                    employeeRequest.cargo, Convert.ToDecimal(employeeRequest.salario_bruto.Remove(0, 3)), 0.0m,
+                    employeeRequest.data_de_admissao);
+
+                if (VerifyBonusValueEmployee(operationProfit, entidade, out var bonus))
                 {
-                    participações = listParticipation,
-                    total_de_funcionarios = listParticipation.Count.ToString(),
-                    total_distribuido = String.Format("{0:C}", Operation_Profit.Total_Balance_Available()),
-                    total_disponibilizado = String.Format("{0:C}", Operation_Profit.Total_Available()),
-                    saldo_total_disponibilizado = String.Format("{0:C}", Operation_Profit.Value_Bonus),
+                    break;
+                }
 
-                });
-               
+                entidade.SetBonus(bonus);
+
+                await _unitOfWork.Employee.AddAsync(entidade);
+
+                FillParticipation(listParticipation, employeeRequest, bonus);
             }
-            catch ( Exception ex)
+
+            return false;
+        }
+
+        private static void FillParticipation(ICollection<ViewParticipation> listParticipation, EmployeeRequest employeeRequest, decimal bonus)
+        {
+            listParticipation.Add(new ViewParticipation
             {
-                _response.AddNotification(new Notification(nameof(EmployeeApplication), $"Falha na operação {ex.Message}"));
-                _logger.LogError(default(EventId), $"Found fails to {nameof(EmployeeApplication)} in AddAsync {ex.Message}");
-                throw;
-                
-            }
+                matricula = employeeRequest.matricula,
+                nome = employeeRequest.nome,
+                valor_da_participação = $"{bonus:C}"
+            });
+        }
 
-            return _response;
+        private bool VerifyBonusValueEmployee(Operation_Profit operationProfit, Employee entidade, out decimal bonus)
+        {
+            bonus = _employeesService.GetBonus(entidade);
 
+            if (!operationProfit.CheckDistributed_Value(bonus)) return false;
+            _response.AddNotification(new Notification(nameof(EmployeeApplication),
+                $"Falha na operação, o valor disponibilizado {bonus} é insuficiente para atender todos o funcionarios  "));
+            return true;
+
+        }
+
+        private void FillViewParticipationEmployee(IReadOnlyCollection<ViewParticipation> listParticipation, Operation_Profit operationProfit)
+        {
+            _response.AddValue(new Data
+            {
+                participações = listParticipation,
+                total_de_funcionarios = listParticipation.Count.ToString(),
+                total_distribuido = $"{operationProfit.Total_Balance_Available():C}",
+                total_disponibilizado = $"{operationProfit.Total_Available():C}",
+                saldo_total_disponibilizado = $"{operationProfit.Value_Bonus:C}",
+
+            });
         }
 
         public async Task<ResponseResult> GetAllAsync()
         {
             try
             {
-                var listParticipation = new List<ViewParticipation>();
                 var employees = await _unitOfWork.Employee.GetAllAsync();
-                foreach (Employee employee in employees)
-                {
-                    listParticipation.Add(new ViewParticipation
-                    {
-                        matricula = employee.Matricula,
-                        nome = employee.Nome,
-                        valor_da_participação = String.Format("{0:C}", employee.Bonus)
-                    });
-                }
+                var listParticipation = employees.Select(employee => new ViewParticipation {matricula = employee.Matricula, nome = employee.Nome, valor_da_participação = $"{employee.Bonus:C}"}).ToList();
 
                 _response.AddValue(new Data
                 {

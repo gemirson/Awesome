@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -27,6 +27,11 @@
     <ProjectReference Include="..\AwesomeStone.Application\AwesomeStone.Application.csproj" />
     <ProjectReference Include="..\AwesomeStone.Core\AwesomeStone.Core.csproj" />
     <ProjectReference Include="..\AwesomeStone.Infra\AwesomeStone.Infra.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Mocks\UnitOfWork\" />
+    <Folder Include="Fixtures\" />
   </ItemGroup>
 
 </Project>

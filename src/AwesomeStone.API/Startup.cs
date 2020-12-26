@@ -39,7 +39,6 @@ namespace AwesomeStone.API
         public void ConfigureTestingServices(IServiceCollection services)
         {
             services.Configure<MongoDbConfig>(Configuration.GetSection("Mongo_Testing"));
-            services.AddTransient<AwesomeMongoDbContext>();
             ConfigureServices(services);
         }
 
@@ -50,7 +49,6 @@ namespace AwesomeStone.API
         public void ConfigureDevelopmentServices(IServiceCollection services)
         {
             services.Configure<MongoDbConfig>(Configuration.GetSection("Mongo_Development"));
-            services.AddTransient<AwesomeMongoDbContext>();
             ConfigureServices(services);
           
         }
@@ -62,7 +60,6 @@ namespace AwesomeStone.API
         public void ConfigureProductionServices(IServiceCollection services)
         {
             services.Configure<MongoDbConfig>(Configuration.GetSection("Mongo_Production"));
-            services.AddTransient<AwesomeMongoDbContext>();
             ConfigureServices(services);
         }
 

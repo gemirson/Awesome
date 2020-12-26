@@ -1,13 +1,15 @@
 using AwesomeStone.Application.Command.Request;
-using AwesomeStone.Core.Entidades;
-using AwesomeStone.Core.Intefaces.Business;
-using AwesomeStone.Infra.Repository;
-using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.DependencyInjection;
+using AwesomeStone.Application.DTOs;
+using AwesomeStone.Application.Interfaces;
+using AwesomeStone.Application.Tests.Mocks.Repository;
+using AwesomeStone.Application.Tests.Mocks.UnitOfWork;
+using Microsoft.Extensions.Options;
 using Moq.AutoMock;
 using System;
 using System.Collections.Generic;
+using AwesomeStone.Infra.Data.Interfaces;
 using Xunit;
+
 
 namespace AwesomeStone.Application.Tests
 {
@@ -16,60 +18,81 @@ namespace AwesomeStone.Application.Tests
 
         private readonly AutoMocker _mocker;
         private readonly EmployeeApplication _handler;
-        private readonly BusinessApplication _handler_Business;
+        private readonly IOptions<CacheConfig> _options;
+        private readonly IUnitOfWork _unitOfWork; 
         public CriarEmployeeHandlerTests()
         {
             _mocker = new AutoMocker();
-            _handler_Business = _mocker.CreateInstance<BusinessApplication>();
+            _options   = Options.Create(new CacheConfig()
+            { Key = "Value_Bonus" });
+            _unitOfWork = new UnitOfWorkMocks(new EmployeeRepository(), new BusinessRepository());
+            _mocker.Use(_unitOfWork);
+             _mocker.Use(_options);
+            _mocker.CreateInstance<BusinessApplication>();
             _handler = _mocker.CreateInstance<EmployeeApplication>();
-          
+
+
         }
 
         [Fact(DisplayName = "Não deve criar um bonus para o funcionario  com command invalido")]
+        [Trait("Employee","Criar Bonus com comando Invalido")]
         public async void Employee_AoCriarumEmployeeComComandoInvalido_RetornarNotificacoesComFalha()
-        {            
-            // Arrange
+        {
+            //-------- -------------------------- Arrange -----------------------------//
+            var commandBusiness = new Operation_ProfitRequest
+            {
+                Bonus_Distribuided = " "
+
+            };
             var command = new List<EmployeeRequest>(){ new EmployeeRequest {
                 matricula = null,
                 nome = null,
                 area = null,
                 cargo = null,
-                salario_bruto = null,
+                salario_bruto = "R$ 10000",
                 data_de_admissao= DateTime.Now
             } };
-            
-            // Act
+            //adicionar pedido
+            _mocker.GetMock<IBusinessApplication>()
+                .Setup(p => p.Add(commandBusiness));
+
+            //----------------------------------- Act --------------------------------//
             var responseResult = await  _handler.AddAsync(command);
 
-            // Assert
+            // ---------------------------------- Assert ------------------------------//
             Assert.True(responseResult.HasFails);
         }
         
         [Fact(DisplayName = "Não deve criar um bonus para o funcionario  com valor a ser distribuido insuficiente")]
-        public async void Employee_AoCriarumEmployeeComValorBonusInsuficiente_RetornarNotificacoesComFalha()
+        [Trait("Employee", "adicionar um valor de bonus com valor insuficiente")]
+        public async void Employee_AdicionarUmBonusAoFuncionarioComValorSerDistribuidoInsuficiente_RetornarNotificacoesComFalha()
         {
-            // Arrange
-            var command_business = new Operation_ProfitRequest
+            //---------------------------- Arrange -------------------------//
+            
+            var commandBusiness = new Operation_ProfitRequest
             {
-                Bonus_Distribuided = " "
+                Bonus_Distribuided = "R$ "
 
             };
             
-            _handler_Business.Add(command_business);
+            //adicionar a valor ser a distribuido
+            _mocker.GetMock<IBusinessApplication>()
+                .Setup(p => p.Add(commandBusiness))
+                ;
 
             var command = new List<EmployeeRequest>(){ new EmployeeRequest {
                 matricula = "0007676",
                 nome =  "Maricela Martin",
                 area = "Serviços Gerais",
-                cargo =  "Copeiro",
+                cargo = "Copeiro",
                 salario_bruto =  "R$ 1.591,69",
                 data_de_admissao= DateTime.Parse("2018-01-17")
             } };
 
-            // Act
+            //--------------------------------- Act ----------------------------//
             var responseResult = await _handler.AddAsync(command);
 
-            // Assert
+            //--------------------------------- Assert -------------------------//
             Assert.True(responseResult.HasFails);
         }
     }

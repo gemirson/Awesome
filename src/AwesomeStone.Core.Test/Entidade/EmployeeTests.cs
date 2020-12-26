@@ -8,8 +8,9 @@ namespace AwesomeStone.Core.Tests.Entidade
 {
     public class EmployeeTests
     {
-        [Fact(DisplayName = "Check valor  o valor do bonus")]
-        public void Business_checkvalordistribuido_RetornarFalse()
+        [Fact(DisplayName = "Não deve permitir inserir um valor de bonus negativo")]
+        [Trait("Entidade Employee", "O valor inserido no bonus menor que zero")]
+        public void Business_EntidadeEmployeeSetValorBonusNegativo_RetornarDomainException()
         {
             // Arrange
             var sut= new Employee("0009968", "Victor Wilson", "Diretoria", "Diretor Financeiro", 12696.20m, 0.0m, DateTime.Parse("2012-01-05"));

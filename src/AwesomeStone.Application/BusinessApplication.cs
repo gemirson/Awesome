@@ -7,6 +7,8 @@ using Flunt.Notifications;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
+using AwesomeStone.Application.DTOs;
+using Microsoft.Extensions.Options;
 
 namespace AwesomeStone.Application
 {
@@ -15,35 +17,37 @@ namespace AwesomeStone.Application
         private readonly IUnitOfWork _unitOfWork;
         private readonly ResponseResult _response;
         private readonly ILogger<BusinessApplication> _logger;
+        private readonly IOptions<CacheConfig> _cacheConfig;
 
-        public BusinessApplication(IUnitOfWork unitOfWork, ResponseResult response, ILogger<BusinessApplication> logger)
+        public BusinessApplication(IUnitOfWork unitOfWork, ResponseResult response, ILogger<BusinessApplication> logger, IOptions<CacheConfig> cacheConfig)
         {
             _unitOfWork = unitOfWork;
             _response = response;
             _logger = logger;
+            _cacheConfig = cacheConfig;
             _logger.LogDebug(default(EventId), $"NLog injected into {nameof(BusinessApplication)}");
         }
 
-        public ResponseResult Add(Operation_ProfitRequest operation_ProfitRequest)
+        public ResponseResult Add(Operation_ProfitRequest operationProfitRequest)
         {
             try
             {
-                operation_ProfitRequest.Validate();
+                operationProfitRequest.Validate();
 
-                if (operation_ProfitRequest.Notifications.Any())
+                if (operationProfitRequest.Notifications.Any())
                 {
-                    _response.AddNotifications(operation_ProfitRequest.Notifications);
+                    _response.AddNotifications(operationProfitRequest.Notifications);
                     return _response;
                 }
 
                 var value = 0.0m;
-                if (operation_ProfitRequest.IsValid())
+                if (operationProfitRequest.IsValid())
                 {
-                    value = Convert.ToDecimal(operation_ProfitRequest.Bonus_Distribuided.Remove(0, 3));
+                    value = Convert.ToDecimal(operationProfitRequest.Bonus_Distribuided.Remove(0, 3));
                 }
 
                 var entidade = new Operation_Profit(value);
-                _unitOfWork.Business.Add("teste", entidade);
+                _unitOfWork.Business.Add(_cacheConfig.Value.Key, entidade);
 
                 _response.AddValue(new
                 {
@@ -55,13 +59,13 @@ namespace AwesomeStone.Application
             catch (ArgumentNullException ex) {
 
                 _response.AddNotification(new Notification(nameof(BusinessApplication), $"Falha na operação {ex.Message}"));
-                _logger.LogError(default(EventId), $"Found fails to {nameof(BusinessApplication)} in AddAsync{ex.Message} to {nameof(operation_ProfitRequest)}");
+                _logger.LogError(default(EventId), $"Found fails to {nameof(BusinessApplication)} in AddAsync{ex.Message} to {nameof(operationProfitRequest)}");
                 throw;
             }
             catch (Exception ex)
             {
                 _response.AddNotification(new Notification(nameof(BusinessApplication), $"Falha na operação {ex.Message}"));
-                _logger.LogError(default(EventId), $"Found fails to {nameof(BusinessApplication)} in AddAsync{ex.Message} to {nameof(operation_ProfitRequest)}");
+                _logger.LogError(default(EventId), $"Found fails to {nameof(BusinessApplication)} in AddAsync{ex.Message} to {nameof(operationProfitRequest)}");
                 throw;
             }
 

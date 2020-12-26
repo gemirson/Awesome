@@ -5,16 +5,17 @@ using Xunit;
 
 namespace AwesomeStone.Core.Tests.Entidade
 {
-    public class Operation_ProfitTests
+    public class OperationProfitTests
     {
         private readonly Operation_Profit sut;
 
-        public Operation_ProfitTests()
+        public OperationProfitTests()
         {
              sut = new Operation_Profit(100000.0m);
         }
 
-        [Fact(DisplayName = "Check valor  a ser distribuido")]
+        [Fact(DisplayName = "Check valor  a ser distribuido é maior que bonus")]
+        [Trait("Entidade Business", "O valor do bonus deve ser menor que o saldo a ser distribuido")]
         public void Business_checkvalordistribuido_RetornarFalse()
         {
             // Arrange
@@ -28,7 +29,8 @@ namespace AwesomeStone.Core.Tests.Entidade
         }
 
         [Fact(DisplayName = "Check valor saldo restante")]
-        public void Business_checkvalorsaldorestante_RetornarSaldo()
+        [Trait("Entidade Business", "O valor do saldo restante")]
+        public void Business_CheckValorCaldRestante_RetornarSaldo()
         {
             // Arrange
             var bonus_value = 20000.0m;
@@ -42,7 +44,8 @@ namespace AwesomeStone.Core.Tests.Entidade
         }
 
         [Fact(DisplayName = "Check valor distribuido")]
-        public void Business_checkvalordistribuido_RetornarValor()
+        [Trait("Entidade Business", "O valor total distribuido")]
+        public void Business_TotalBalanceAvailableOValorDistribuido_RetornarValor()
         {
             // Arrange
             var bonus_value = 20000.0m;
@@ -56,7 +59,7 @@ namespace AwesomeStone.Core.Tests.Entidade
         }
 
         [Fact(DisplayName = "Check valor é zero")]
-        public void Business_checkvalordistribuidoZero_RetornarTrue()
+        public void Business_CheckValorDistribuidoZero_RetornarTrue()
         {
             // Arrange
             var sut_nulo = new Operation_Profit(0.0m);
@@ -67,6 +70,7 @@ namespace AwesomeStone.Core.Tests.Entidade
 
             // Assert
             Assert.True(responseResult);
+           
         }
     }
 }

@@ -28,12 +28,10 @@ namespace AwesomeStone.Core.Entidades
         }
 
         public bool CheckDistributed_Value(decimal value) {
-            if (Value_Bonus > value) {
-                Value_Bonus -= value;
-                return false;
-            }
-            
-            return true;
+            if (Value_Bonus <= value) return true;
+            Value_Bonus -= value;
+            return false;
+
         }
 
         public decimal Total_Available()
