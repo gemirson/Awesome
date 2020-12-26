@@ -25,9 +25,9 @@ namespace AwesomeStone.Application.Tests.CommandHandlers.Business
         public void Business_AdicionarUmValoraSerDistribuidoComComandoInvalido_RetornarNotificacoesComFalha()
         {
             //----------------------------------- Arrange -------------------------//
-            var command = new Operation_ProfitRequest
+            var command = new OperationProfitRequest
             {
-                Bonus_Distribuided = null
+                BonusDistribuided = null
 
             };
 

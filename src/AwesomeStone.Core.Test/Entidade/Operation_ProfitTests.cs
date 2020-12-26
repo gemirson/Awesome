@@ -7,11 +7,11 @@ namespace AwesomeStone.Core.Tests.Entidade
 {
     public class OperationProfitTests
     {
-        private readonly Operation_Profit sut;
+        private readonly OperationProfit _sut;
 
         public OperationProfitTests()
         {
-             sut = new Operation_Profit(100000.0m);
+             _sut = new OperationProfit(100000.0m);
         }
 
         [Fact(DisplayName = "Check valor  a ser distribuido é maior que bonus")]
@@ -19,10 +19,10 @@ namespace AwesomeStone.Core.Tests.Entidade
         public void Business_checkvalordistribuido_RetornarFalse()
         {
             // Arrange
-            var bonus_value = 20000.0m;
+            var bonusValue = 20000.0m;
 
             // Act
-            var responseResult = sut.CheckDistributed_Value(bonus_value);
+            var responseResult = _sut.CheckDistributed_Value(bonusValue);
 
             // Assert
             Assert.False( responseResult);
@@ -33,11 +33,11 @@ namespace AwesomeStone.Core.Tests.Entidade
         public void Business_CheckValorCaldRestante_RetornarSaldo()
         {
             // Arrange
-            var bonus_value = 20000.0m;
+            var bonusValue = 20000.0m;
 
             // Act
-            sut.CheckDistributed_Value(bonus_value);
-            var responseResult = sut.Value_Bonus;
+            _sut.CheckDistributed_Value(bonusValue);
+            var responseResult = _sut.ValueBonus;
 
             // Assert
             Assert.Equal(80000.0m,responseResult);
@@ -48,11 +48,11 @@ namespace AwesomeStone.Core.Tests.Entidade
         public void Business_TotalBalanceAvailableOValorDistribuido_RetornarValor()
         {
             // Arrange
-            var bonus_value = 20000.0m;
+            var bonusValue = 20000.0m;
 
             // Act
-            sut.CheckDistributed_Value(bonus_value);
-            var responseResult = sut.Total_Balance_Available();
+            _sut.CheckDistributed_Value(bonusValue);
+            var responseResult = _sut.Total_Balance_Available();
 
             // Assert
             Assert.Equal(20000.0m, responseResult);
@@ -62,11 +62,11 @@ namespace AwesomeStone.Core.Tests.Entidade
         public void Business_CheckValorDistribuidoZero_RetornarTrue()
         {
             // Arrange
-            var sut_nulo = new Operation_Profit(0.0m);
+            var sutNulo = new OperationProfit(0.0m);
 
             // Act
-            sut_nulo.Validate();
-            var responseResult = sut_nulo.Notifications.Any();
+            sutNulo.Validate();
+            var responseResult = sutNulo.Notifications.Any();
 
             // Assert
             Assert.True(responseResult);

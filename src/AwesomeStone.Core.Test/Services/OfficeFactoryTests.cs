@@ -10,12 +10,12 @@ namespace AwesomeStone.Core.Tests.Services
     public class OfficeFactoryTests
     {
         private readonly AutoMocker _mocker;
-        private readonly OfficeFactory sut;
+        private readonly OfficeFactory _sut;
 
         public OfficeFactoryTests()
         {
             _mocker = new AutoMocker();
-            sut = _mocker.CreateInstance<OfficeFactory>();
+            _sut = _mocker.CreateInstance<OfficeFactory>();
         }
 
         [Fact(DisplayName = "Calculo do Peso por Area")]
@@ -35,7 +35,7 @@ namespace AwesomeStone.Core.Tests.Services
 
             foreach (string  item in command)
             {
-               responseResult.Add( sut.GetWeightOffice(item));
+               responseResult.Add( _sut.GetWeightOffice(item));
             }
 
             // Assert

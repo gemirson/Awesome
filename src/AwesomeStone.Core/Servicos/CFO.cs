@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AwesomeStone.Core.Servicos
 {
-    public class CFO : IOfficeStrategy
+    public class Cfo : IOfficeStrategy
     {
         public int GetWeightOffice()
         {

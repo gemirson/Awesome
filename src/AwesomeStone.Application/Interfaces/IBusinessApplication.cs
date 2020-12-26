@@ -8,8 +8,8 @@ namespace AwesomeStone.Application.Interfaces
 {
     public interface IBusinessApplication
     {
-        ResponseResult Add(Operation_ProfitRequest operation_ProfitRequest);
-        Operation_Profit Get(string key);
+        ResponseResult Add(OperationProfitRequest operationProfitRequest);
+        OperationProfit Get(string key);
 
     }
 }

@@ -12,27 +12,27 @@ namespace AwesomeStone.Core.Entidades
 
         public decimal Bonus { get; private set;}
 
-        public decimal Salario_bruto { get; private set; }
+        public decimal SalarioBruto { get; private set; }
        
-        public DateTime Data_de_Admissao { get; private set; }
+        public DateTime DataDeAdmissao { get; private set; }
 
-        public Employee(string _matricula, string _nome, string _area, string _cargo, decimal _salario_bruto, decimal _bonus,DateTime _data_de_Admissao)
+        public Employee(string matricula, string nome, string area, string cargo, decimal salarioBruto, decimal bonus,DateTime dataDeAdmissao)
         {
-            Matricula = _matricula;
-            Nome = _nome;
-            Area = _area;
-            Cargo = _cargo;
-            Salario_bruto = _salario_bruto;
-            Bonus = _bonus;
-            Data_de_Admissao = _data_de_Admissao;
+            Matricula = matricula;
+            Nome = nome;
+            Area = area;
+            Cargo = cargo;
+            SalarioBruto = salarioBruto;
+            Bonus = bonus;
+            DataDeAdmissao = dataDeAdmissao;
 
             Validate();
 
         }
 
-        public void SetBonus(decimal _bonus) {
-            if (_bonus < 0.0m) throw new  DomainException("O valor do bonus não pode ser menor que zero");
-            Bonus = _bonus;
+        public void SetBonus(decimal bonus) {
+            if (bonus < 0.0m) throw new  DomainException("O valor do bonus não pode ser menor que zero");
+            Bonus = bonus;
         }
         public override bool Equals(object obj)
         {
@@ -41,19 +41,19 @@ namespace AwesomeStone.Core.Entidades
                    Nome == employee.Nome &&
                    Area == employee.Area &&
                    Cargo == employee.Cargo &&
-                   Salario_bruto == employee.Salario_bruto &&
-                   Data_de_Admissao == employee.Data_de_Admissao;
+                   SalarioBruto == employee.SalarioBruto &&
+                   DataDeAdmissao == employee.DataDeAdmissao;
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Matricula, Nome, Cargo, Salario_bruto, Data_de_Admissao);
+            return HashCode.Combine(Matricula, Nome, Cargo, SalarioBruto, DataDeAdmissao);
         }
 
         public override void Validate()
         {
-            Validacoes.ValidarSeMenorQue(Salario_bruto, 0.0m, "O valor do salaário bruto tem que ser maior que zero");
-            Validacoes.ValidarSeNulo(Data_de_Admissao,"O valor do salaário bruto tem que ser maior que zero");
+            Validacoes.ValidarSeMenorQue(SalarioBruto, 0.0m, "O valor do salaário bruto tem que ser maior que zero");
+            Validacoes.ValidarSeNulo(DataDeAdmissao,"O valor do salaário bruto tem que ser maior que zero");
             Validacoes.ValidarSeNulo(Cargo, "O cargo não pode ser nulo");
             Validacoes.ValidarSeNulo(Area, "A area não pode ser nula");
             Validacoes.ValidarSeNulo(Matricula, "A matricula não pode ser nula");

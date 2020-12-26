@@ -28,7 +28,7 @@ namespace AwesomeStone.Application
             _logger.LogDebug(default(EventId), $"NLog injected into {nameof(BusinessApplication)}");
         }
 
-        public ResponseResult Add(Operation_ProfitRequest operationProfitRequest)
+        public ResponseResult Add(OperationProfitRequest operationProfitRequest)
         {
             try
             {
@@ -43,10 +43,11 @@ namespace AwesomeStone.Application
                 var value = 0.0m;
                 if (operationProfitRequest.IsValid())
                 {
-                    value = Convert.ToDecimal(operationProfitRequest.Bonus_Distribuided.Remove(0, 3));
+                    
+                    value = Convert.ToDecimal(operationProfitRequest.BonusDistribuided.Remove(0, 3));
                 }
 
-                var entidade = new Operation_Profit(value);
+                var entidade = new OperationProfit(value);
                 _unitOfWork.Business.Add(_cacheConfig.Value.Key, entidade);
 
                 _response.AddValue(new
@@ -73,7 +74,7 @@ namespace AwesomeStone.Application
 
         }
 
-        public Operation_Profit Get(string key)
+        public OperationProfit Get(string key)
         {
            return  _unitOfWork.Business.GetAll(key);
         }

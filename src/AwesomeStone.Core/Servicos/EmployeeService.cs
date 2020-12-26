@@ -7,7 +7,7 @@ namespace AwesomeStone.Core.Servicos
     public class EmployeeService : IEmployeeService
     {
 
-        const int minimum_salary = 1040;
+        const int MinimumSalary = 1040;
 
         private readonly IBonus _bonus;
         private readonly OfficeFactory _officeFactory;
@@ -24,16 +24,16 @@ namespace AwesomeStone.Core.Servicos
 
         public decimal GetBonus(Employee employee) {
 
-            float number_salary =  Calculate_Number_Salary(employee);
-            float number_Year   = Calculate_Number_Year(employee);
+            float numberSalary =  Calculate_Number_Salary(employee);
+            float numberYear   = Calculate_Number_Year(employee);
 
             return _bonus.CalculateBonus(_officeFactory.GetWeightOffice(employee.Area),
-                                         _weigthSalary.GetWeigth(number_salary),
-                                         _weigthAdmission.GetWeigth(number_Year), employee.Salario_bruto) ;
+                                         _weigthSalary.GetWeigth(numberSalary),
+                                         _weigthAdmission.GetWeigth(numberYear), employee.SalarioBruto) ;
         }
               
-        internal float Calculate_Number_Salary(Employee employee) => (float)(employee.Salario_bruto / minimum_salary);
-        internal float Calculate_Number_Year(Employee employee) =>(float)(DateTime.Now.Subtract(employee.Data_de_Admissao).TotalDays / 365.0);
+        internal float Calculate_Number_Salary(Employee employee) => (float)(employee.SalarioBruto / MinimumSalary);
+        internal float Calculate_Number_Year(Employee employee) =>(float)(DateTime.Now.Subtract(employee.DataDeAdmissao).TotalDays / 365.0);
 
         public decimal GetSalaryConvert(string salary)
         {

@@ -9,12 +9,12 @@ namespace AwesomeStone.Core.Tests.Services
     public class ServiceEmployeesTests
     {
         private readonly AutoMocker _mocker;
-        private readonly EmployeeService sut;
+        private readonly EmployeeService _sut;
 
         public ServiceEmployeesTests()
         {
             _mocker = new AutoMocker();
-            sut = _mocker.CreateInstance<EmployeeService>();
+            _sut = _mocker.CreateInstance<EmployeeService>();
         }
 
         [Fact(DisplayName = "Calculo bonus")]
@@ -24,7 +24,7 @@ namespace AwesomeStone.Core.Tests.Services
             var commandEmployee = new Employee("0009968", "Victor Wilson", "Diretoria", "Diretor Financeiro", 12696.20m,0.0m,DateTime.Parse("2012-01-05"));
           
             // Act
-            var responseResult = sut.GetBonus(commandEmployee);
+            var responseResult = _sut.GetBonus(commandEmployee);
                        
             // Assert
             Assert.Equal(0, responseResult);
@@ -39,7 +39,7 @@ namespace AwesomeStone.Core.Tests.Services
             var salary = "R$  2.215,00";
 
             // Act
-            var responseResult = sut.GetSalaryConvert(salary);
+            var responseResult = _sut.GetSalaryConvert(salary);
 
             // Assert
             Assert.Equal(2215.00m, responseResult);

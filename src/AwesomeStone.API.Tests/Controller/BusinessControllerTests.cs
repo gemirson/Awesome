@@ -23,13 +23,13 @@ namespace AwesomeStone.API.Tests.Controller
         public async Task Business_CriarValorBonusDistribuido_Retornar200OKSucesso()
         {
             // Arrange
-            var command_business = new Operation_ProfitRequest
+            var commandBusiness = new OperationProfitRequest
             {
-                Bonus_Distribuided = "R$ 5000"
+                BonusDistribuided = "R$ 5000"
             };
            
             // Act
-            var postResponseBusiness = await _testsFixture.Client.PostAsJsonAsync("/api/business/business", command_business);
+            var postResponseBusiness = await _testsFixture.Client.PostAsJsonAsync("/api/business/business", commandBusiness);
             // Assert
             postResponseBusiness.EnsureSuccessStatusCode();
         }

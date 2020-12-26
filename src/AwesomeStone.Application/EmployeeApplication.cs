@@ -63,7 +63,7 @@ namespace AwesomeStone.Application
         }
 
         private async Task<bool> CreateEmployeesAsync(IEnumerable<EmployeeRequest> employeesRequest,
-            Operation_Profit operationProfit,
+            OperationProfit operationProfit,
             ICollection<ViewParticipation> listParticipation)
         {
             foreach (var employeeRequest in employeesRequest)
@@ -76,9 +76,9 @@ namespace AwesomeStone.Application
                     return true;
                 }
 
-                var entidade = new Employee(employeeRequest.matricula, employeeRequest.nome, employeeRequest.area,
-                    employeeRequest.cargo, _employeesService.GetSalaryConvert(employeeRequest.salario_bruto), 0.0m,
-                    employeeRequest.data_de_admissao);
+                var entidade = new Employee(employeeRequest.Matricula, employeeRequest.Nome, employeeRequest.Area,
+                    employeeRequest.Cargo, _employeesService.GetSalaryConvert(employeeRequest.SalarioBruto), 0.0m,
+                    employeeRequest.DataDeAdmissao);
 
                 if (VerifyBonusValueEmployee(operationProfit, entidade, out var bonus))
                 {
@@ -99,13 +99,13 @@ namespace AwesomeStone.Application
         {
             listParticipation.Add(new ViewParticipation
             {
-                matricula = employeeRequest.matricula,
-                nome = employeeRequest.nome,
-                valor_da_participação = $"{bonus:C}"
+                Matricula = employeeRequest.Matricula,
+                Nome = employeeRequest.Nome,
+                ValorDaParticipação = $"{bonus:C}"
             });
         }
 
-        private bool VerifyBonusValueEmployee(Operation_Profit operationProfit, Employee entidade, out decimal bonus)
+        private bool VerifyBonusValueEmployee(OperationProfit operationProfit, Employee entidade, out decimal bonus)
         {
             bonus = _employeesService.GetBonus(entidade);
 
@@ -116,15 +116,15 @@ namespace AwesomeStone.Application
 
         }
 
-        private void FillViewParticipationEmployee(IReadOnlyCollection<ViewParticipation> listParticipation, Operation_Profit operationProfit)
+        private void FillViewParticipationEmployee(IReadOnlyCollection<ViewParticipation> listParticipation, OperationProfit operationProfit)
         {
             _response.AddValue(new Data
             {
-                participações = listParticipation,
-                total_de_funcionarios = listParticipation.Count.ToString(),
-                total_distribuido = $"{operationProfit.Total_Balance_Available():C}",
-                total_disponibilizado = $"{operationProfit.Total_Available():C}",
-                saldo_total_disponibilizado = $"{operationProfit.Value_Bonus:C}",
+                Participações = listParticipation,
+                TotalDeFuncionarios = listParticipation.Count.ToString(),
+                TotalDistribuido = $"{operationProfit.Total_Balance_Available():C}",
+                TotalDisponibilizado = $"{operationProfit.Total_Available():C}",
+                SaldoTotalDisponibilizado = $"{operationProfit.ValueBonus:C}",
 
             });
         }
@@ -134,12 +134,12 @@ namespace AwesomeStone.Application
             try
             {
                 var employees = await _unitOfWork.Employee.GetAllAsync();
-                var listParticipation = employees.Select(employee => new ViewParticipation {matricula = employee.Matricula, nome = employee.Nome, valor_da_participação = $"{employee.Bonus:C}"}).ToList();
+                var listParticipation = employees.Select(employee => new ViewParticipation {Matricula = employee.Matricula, Nome = employee.Nome, ValorDaParticipação = $"{employee.Bonus:C}"}).ToList();
 
                 _response.AddValue(new Data
                 {
-                    participações = listParticipation,
-                    total_de_funcionarios = listParticipation.Count.ToString(),
+                    Participações = listParticipation,
+                    TotalDeFuncionarios = listParticipation.Count.ToString(),
                 });
                                
             }

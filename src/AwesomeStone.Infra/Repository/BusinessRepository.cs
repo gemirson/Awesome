@@ -13,14 +13,14 @@ namespace AwesomeStone.Infra.Repository
             _memoryCache = memoryCache;
         }
 
-        public void Add(string key, Operation_Profit value)
+        public void Add(string key, OperationProfit value)
         {
             _memoryCache.Set(key,value);
         }
 
-        public Operation_Profit GetAll(string key)
+        public OperationProfit GetAll(string key)
         {
-            return  _memoryCache.Get<Operation_Profit>(key);
+            return  _memoryCache.Get<OperationProfit>(key);
         }
     }
 }

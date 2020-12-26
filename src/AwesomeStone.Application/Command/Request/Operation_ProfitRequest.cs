@@ -4,23 +4,23 @@ using System;
 
 namespace AwesomeStone.Application.Command.Request
 {
-    public class Operation_ProfitRequest : Notifiable
+    public class OperationProfitRequest : Notifiable
     {
-        public string Bonus_Distribuided { get; set; }
+        public string BonusDistribuided { get; set; }
 
         public void Validate()
         {
             AddNotifications(new Contract()
                   .Requires()
-                  .IsNotNull(Bonus_Distribuided,nameof(Bonus_Distribuided), "O valor a ser distriduido não pode ser nula"));
+                  .IsNotNull(BonusDistribuided,nameof(BonusDistribuided), "O valor a ser distriduido não pode ser nula"));
 
             AddNotifications(new Contract()
                  .Requires()
-                 .IsNotNull(this, nameof(Bonus_Distribuided), $"o objeto {nameof(Operation_ProfitRequest)} não pode ser nulo"));
+                 .IsNotNull(this, nameof(BonusDistribuided), $"o objeto {nameof(OperationProfitRequest)} não pode ser nulo"));
 
             AddNotifications(new Contract()
                 .Requires()
-                .IsNotEmpty(Guid.NewGuid(), nameof(Bonus_Distribuided), "O valor a ser distriduido não pode ser vazio "));
+                .IsNotEmpty(Guid.NewGuid(), nameof(BonusDistribuided), "O valor a ser distriduido não pode ser vazio "));
 
             
 
@@ -28,7 +28,7 @@ namespace AwesomeStone.Application.Command.Request
         }
         public bool IsValid()
         {
-            return Bonus_Distribuided.Contains("R$");
+            return BonusDistribuided.Contains("R$");
         }
     }
 }

@@ -45,9 +45,9 @@ namespace AwesomeStone.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ActionResult BonusCreate([FromBody] Operation_ProfitRequest operation_ProfitRequest)
+        public ActionResult BonusCreate([FromBody] OperationProfitRequest operationProfitRequest)
         {
-            var result =  _businessAplication.Add(operation_ProfitRequest);
+            var result =  _businessAplication.Add(operationProfitRequest);
 
             if (result.HasFails)
             {

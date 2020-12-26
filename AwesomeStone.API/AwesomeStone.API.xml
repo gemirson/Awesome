@@ -16,7 +16,7 @@
             <param name="logger"></param>
             <param name="businessAplication"></param>
         </member>
-        <member name="M:AwesomeStone.API.Controllers.BusinessController.BonusCreate(AwesomeStone.Application.Command.Request.Operation_ProfitRequest)">
+        <member name="M:AwesomeStone.API.Controllers.BusinessController.BonusCreate(AwesomeStone.Application.Command.Request.OperationProfitRequest)">
              <summary>
              Criar Bonus
              </summary>

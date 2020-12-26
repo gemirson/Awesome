@@ -10,12 +10,12 @@ namespace AwesomeStone.Core.Tests.Services
     public class WeigthSalaryTests
     {
         private readonly AutoMocker _mocker;
-        private readonly WeigthSalary sut;
+        private readonly WeigthSalary _sut;
 
         public WeigthSalaryTests()
         {
             _mocker = new AutoMocker();
-            sut = _mocker.CreateInstance<WeigthSalary>();
+            _sut = _mocker.CreateInstance<WeigthSalary>();
         }
 
         [Fact(DisplayName = "Calculo por faixa salarial")]
@@ -35,7 +35,7 @@ namespace AwesomeStone.Core.Tests.Services
 
             foreach (float item in commandAnos)
             {
-                responseResult.Add(sut.GetWeigth(item));
+                responseResult.Add(_sut.GetWeigth(item));
             }
 
             // Assert

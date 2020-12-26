@@ -10,12 +10,12 @@ namespace AwesomeStone.Core.Tests.Services
     public class WeigthAdmissionTests
     {
         private readonly AutoMocker _mocker;
-        private readonly WeigthAdmission sut;
+        private readonly WeigthAdmission _sut;
 
         public WeigthAdmissionTests()
         {
             _mocker = new AutoMocker();
-            sut = _mocker.CreateInstance<WeigthAdmission>();
+            _sut = _mocker.CreateInstance<WeigthAdmission>();
         }
 
         [Fact(DisplayName = "Calculo por data de admissão")]
@@ -35,7 +35,7 @@ namespace AwesomeStone.Core.Tests.Services
 
             foreach (float item in commandAnos)
             {
-                responseResult.Add(sut.GetWeigth(item));
+                responseResult.Add(_sut.GetWeigth(item));
             }
 
             // Assert

@@ -6,10 +6,10 @@ namespace AwesomeStone.Application.DTOs
 {
     internal class Data
     {
-        public IEnumerable<ViewParticipation> participações { get;set;}
-        public string total_de_funcionarios       { get; set; }
-        public string total_distribuido           { get; set; }
-        public string total_disponibilizado       { get; set; }
-        public string saldo_total_disponibilizado { get; set; }
+        public IEnumerable<ViewParticipation> Participações { get;set;}
+        public string TotalDeFuncionarios       { get; set; }
+        public string TotalDistribuido           { get; set; }
+        public string TotalDisponibilizado       { get; set; }
+        public string SaldoTotalDisponibilizado { get; set; }
     }
 }

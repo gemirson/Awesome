@@ -16,7 +16,7 @@ namespace AwesomeStone.Core.Servicos
         }
 
         private void Initialize() {
-             _map.Add("Diretoria",     new CFO());
+             _map.Add("Diretoria",     new Cfo());
              _map.Add("Contabilidade", new Accounting());
              _map.Add("Financeiro",    new Accounting());
              _map.Add("Tecnologia",    new Accounting());

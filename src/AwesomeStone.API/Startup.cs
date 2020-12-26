@@ -1,6 +1,5 @@
 using AwesomeStone.API.Common.Configuration;
 using AwesomeStone.API.Middeware;
-using AwesomeStone.Infra.Data;
 using AwesomeStone.Infra.Data.Config;
 using AwesomeStone.IOC;
 using Microsoft.AspNetCore.Builder;

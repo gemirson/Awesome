@@ -39,18 +39,18 @@ namespace AwesomeStone.Application.Tests
         public async void Employee_AoCriarumEmployeeComComandoInvalido_RetornarNotificacoesComFalha()
         {
             //-------- -------------------------- Arrange -----------------------------//
-            var commandBusiness = new Operation_ProfitRequest
+            var commandBusiness = new OperationProfitRequest
             {
-                Bonus_Distribuided = " "
+                BonusDistribuided = " "
 
             };
             var command = new List<EmployeeRequest>(){ new EmployeeRequest {
-                matricula = null,
-                nome = null,
-                area = null,
-                cargo = null,
-                salario_bruto = "R$ 10000",
-                data_de_admissao= DateTime.Now
+                Matricula = null,
+                Nome = null,
+                Area = null,
+                Cargo = null,
+                SalarioBruto = "R$ 10000",
+                DataDeAdmissao= DateTime.Now
             } };
             //adicionar pedido
             _mocker.GetMock<IBusinessApplication>()
@@ -69,9 +69,9 @@ namespace AwesomeStone.Application.Tests
         {
             //---------------------------- Arrange -------------------------//
             
-            var commandBusiness = new Operation_ProfitRequest
+            var commandBusiness = new OperationProfitRequest
             {
-                Bonus_Distribuided = "R$ "
+                BonusDistribuided = "R$ "
 
             };
             
@@ -81,12 +81,12 @@ namespace AwesomeStone.Application.Tests
                 ;
 
             var command = new List<EmployeeRequest>(){ new EmployeeRequest {
-                matricula = "0007676",
-                nome =  "Maricela Martin",
-                area = "Serviços Gerais",
-                cargo = "Copeiro",
-                salario_bruto =  "R$ 1.591,69",
-                data_de_admissao= DateTime.Parse("2018-01-17")
+                Matricula = "0007676",
+                Nome =  "Maricela Martin",
+                Area = "Serviços Gerais",
+                Cargo = "Copeiro",
+                SalarioBruto =  "R$ 1.591,69",
+                DataDeAdmissao= DateTime.Parse("2018-01-17")
             } };
 
             //--------------------------------- Act ----------------------------//

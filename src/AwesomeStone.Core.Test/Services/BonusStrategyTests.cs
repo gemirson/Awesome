@@ -9,12 +9,12 @@ namespace AwesomeStone.Core.Test.Services
     {
 
         private readonly AutoMocker _mocker;
-        private readonly BonusStrategy sut;
+        private readonly BonusStrategy _sut;
 
         public BonusStrategyTests()
         {
             _mocker = new AutoMocker();
-            sut= _mocker.CreateInstance<BonusStrategy>();
+            _sut= _mocker.CreateInstance<BonusStrategy>();
         }
 
         [Fact(DisplayName = "Calculo do Bonus")]
@@ -31,7 +31,7 @@ namespace AwesomeStone.Core.Test.Services
             };
 
             // Act
-            var responseResult = sut.CalculateBonus(command.Weight_position,command.Weight_salary,command.Weight_year,command.salary);
+            var responseResult = _sut.CalculateBonus(command.Weight_position,command.Weight_salary,command.Weight_year,command.salary);
 
             // Assert
             Assert.Equal(120000,responseResult);

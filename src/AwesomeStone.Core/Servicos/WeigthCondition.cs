@@ -8,10 +8,10 @@ namespace AwesomeStone.Core.Servicos
 
         public Func<float, int> Transform { get; private set; }
 
-        public WeigthCondition(Func<float, bool> _canApply, Func<float, int> _transform)
+        public WeigthCondition(Func<float, bool> canApply, Func<float, int> transform)
         {
-            CanApply = _canApply;
-            Transform = _transform;
+            CanApply = canApply;
+            Transform = transform;
         }
     }
 }

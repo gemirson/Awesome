@@ -24,23 +24,23 @@ namespace AwesomeStone.API.Tests.Controller
         public async Task Employee_CriarBonus_Retornar200OKSucesso()
         {
             // Arrange
-            var command_business = new Operation_ProfitRequest
+            var commandBusiness = new OperationProfitRequest
             {
-                Bonus_Distribuided = "R$ 500000"
+                BonusDistribuided = "R$ 500000"
 
             };
                        
             var commandEmployeeRequest = new List<EmployeeRequest>(){ new EmployeeRequest {
-                matricula = "0007676",
-                nome =  "Maricela Martin",
-                area = "Serviços Gerais",
-                cargo =  "Copeiro",
-                salario_bruto =  "R$ 1.591,69",
-                data_de_admissao= DateTime.Parse("2018-01-17")
+                Matricula = "0007676",
+                Nome =  "Maricela Martin",
+                Area = "Serviços Gerais",
+                Cargo =  "Copeiro",
+                SalarioBruto =  "R$ 1.591,69",
+                DataDeAdmissao= DateTime.Parse("2018-01-17")
             } };
 
             // Act
-            var postResponseBusiness = await _testsFixture.Client.PostAsJsonAsync("/api/business/business", command_business);
+            var postResponseBusiness = await _testsFixture.Client.PostAsJsonAsync("/api/business/business", commandBusiness);
 
             var postResponse = await _testsFixture.Client.PostAsJsonAsync("/api/employee/bonus", commandEmployeeRequest);
 
@@ -52,23 +52,23 @@ namespace AwesomeStone.API.Tests.Controller
         public async Task Employee_CriarBonusComValorDistribuidoInsuficiente_Retornar400BadRequest()
         {
             // Arrange
-            var command_business = new Operation_ProfitRequest
+            var commandBusiness = new OperationProfitRequest
             {
-                Bonus_Distribuided = "R$ 30000"
+                BonusDistribuided = "R$ 30000"
 
             };
 
             var commandEmployeeRequest = new List<EmployeeRequest>(){ new EmployeeRequest {
-                matricula = "0007676",
-                nome =  "Maricela Martin",
-                area = "Serviços Gerais",
-                cargo =  "Copeiro",
-                salario_bruto =  "R$ 1.591,69",
-                data_de_admissao= DateTime.Parse("2018-01-17")
+                Matricula = "0007676",
+                Nome =  "Maricela Martin",
+                Area = "Serviços Gerais",
+                Cargo =  "Copeiro",
+                SalarioBruto =  "R$ 1.591,69",
+                DataDeAdmissao= DateTime.Parse("2018-01-17")
             } };
 
             // Act
-            var postResponseBusiness = await _testsFixture.Client.PostAsJsonAsync("/api/business/business", command_business);
+            var postResponseBusiness = await _testsFixture.Client.PostAsJsonAsync("/api/business/business", commandBusiness);
 
             var postResponse = await _testsFixture.Client.PostAsJsonAsync("/api/employee/bonus", commandEmployeeRequest);
 
@@ -80,22 +80,22 @@ namespace AwesomeStone.API.Tests.Controller
         [Fact(DisplayName = "Não deve criar um bonus de um employee no banco de dados")]
         public async Task Employee_NaoCriarEmployee_Retornar400BadRequest()
         {
-            var command_business = new Operation_ProfitRequest
+            var commandBusiness = new OperationProfitRequest
             {
-                Bonus_Distribuided = " "
+                BonusDistribuided = " "
 
             };
             var commandEmployeeRequest = new List<EmployeeRequest>(){ new EmployeeRequest {
-                matricula = "0007676",
-                nome =  "Maricela Martin",
-                area = "Serviços Gerais",
-                cargo =  "Copeiro",
-                salario_bruto =  "R$ 1.591,69",
-                data_de_admissao= DateTime.Parse("2018-01-17")
+                Matricula = "0007676",
+                Nome =  "Maricela Martin",
+                Area = "Serviços Gerais",
+                Cargo =  "Copeiro",
+                SalarioBruto =  "R$ 1.591,69",
+                DataDeAdmissao= DateTime.Parse("2018-01-17")
             } };
 
             // Act
-            var postResponseBusiness = _testsFixture.Client.PostAsJsonAsync("/api/business/business", command_business);
+            var postResponseBusiness = _testsFixture.Client.PostAsJsonAsync("/api/business/business", commandBusiness);
 
             var postResponse = await _testsFixture.Client.PostAsJsonAsync("/api/employee/bonus", commandEmployeeRequest);
 
