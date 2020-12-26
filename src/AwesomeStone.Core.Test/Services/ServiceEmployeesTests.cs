@@ -30,6 +30,21 @@ namespace AwesomeStone.Core.Tests.Services
             Assert.Equal(0, responseResult);
            
         }
-        
+
+        [Fact(DisplayName = "Convert o salario bruto para padrão em decimal")]
+        [Trait("Servico Employee","Convert o salario para decimal")]
+        public void ServiceEmployee_ConverterSalarioBrutoParaDecimalRemovendoSimboloMonetario_RetornarSalario()
+        {
+            // Arrange
+            var salary = "R$  2.215,00";
+
+            // Act
+            var responseResult = sut.GetSalaryConvert(salary);
+
+            // Assert
+            Assert.Equal(2215.00m, responseResult);
+
+        }
+
     }
 }
