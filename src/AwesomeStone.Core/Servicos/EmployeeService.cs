@@ -34,5 +34,19 @@ namespace AwesomeStone.Core.Servicos
               
         internal float Calculate_Number_Salary(Employee employee) => (float)(employee.Salario_bruto / minimum_salary);
         internal float Calculate_Number_Year(Employee employee) =>(float)(DateTime.Now.Subtract(employee.Data_de_Admissao).TotalDays / 365.0);
+
+        public decimal GetSalaryConvert(string salary)
+        {
+            string result = String.Empty;
+
+            foreach (var caracter in salary)
+            {
+                if (Char.IsDigit(caracter) || Char.IsPunctuation(caracter))
+                {
+                    result += caracter;
+                }
+            }
+            return Convert.ToDecimal(result);
+        }
     }
 }

@@ -8,8 +8,9 @@ namespace AwesomeStone.Core.Intefaces.Employees
     public interface IEmployeeService
     {
         public decimal GetBonus(Employee employee);
-     
-       
+        public decimal GetSalaryConvert(string salary);
+
+
     }
         
 }

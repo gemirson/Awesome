@@ -77,7 +77,7 @@ namespace AwesomeStone.Application
                 }
 
                 var entidade = new Employee(employeeRequest.matricula, employeeRequest.nome, employeeRequest.area,
-                    employeeRequest.cargo, Convert.ToDecimal(employeeRequest.salario_bruto.Remove(0, 3)), 0.0m,
+                    employeeRequest.cargo, _employeesService.GetSalaryConvert(employeeRequest.salario_bruto), 0.0m,
                     employeeRequest.data_de_admissao);
 
                 if (VerifyBonusValueEmployee(operationProfit, entidade, out var bonus))
