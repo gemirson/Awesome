@@ -37,7 +37,7 @@ namespace AwesomeStone.API.Controllers
         /// <remarks>
         /// Sample request:
         ///
-        ///     POST /api/operacaoasync
+        ///     POST /api/employee/bonus
         ///     {
         ///        "matricula": "0009968",
         ///        "nome": "Victor Wilson",

@@ -25,24 +25,34 @@ namespace AwesomeStone.Core.Servicos
 
         public decimal GetBonus(Employee employee) {
 
-            float numberSalary =  Calculate_Number_Salary(employee);
-            float numberYear   = Calculate_Number_Year(employee);
+            var numberSalary =  Calculate_Number_Salary(employee);
+            var numberYear   = Calculate_Number_Year(employee);
 
             return _bonus.CalculateBonus(_officeFactory.GetWeightOffice(employee.Area),
                                          _weigthSalary.GetWeigth(numberSalary),
                                          _weigthAdmission.GetWeigth(numberYear), employee.SalarioBruto) ;
         }
-              
-        internal float Calculate_Number_Salary(Employee employee) => (float)(employee.SalarioBruto / MinimumSalary);
-        internal float Calculate_Number_Year(Employee employee) =>(float)(DateTime.Now.Subtract(employee.DataDeAdmissao).TotalDays / 365.0);
+
+        private static float Calculate_Number_Salary(Employee employee)
+        {
+            if (MinimumSalary == 0) throw new Exception("error salario minimi invalido");
+            if (employee is { }) return (float) (employee.SalarioBruto / MinimumSalary);
+            return 0.0f;
+        }
+
+        private static float Calculate_Number_Year(Employee employee)
+        {
+            var result = (float) (DateTime.Now.Subtract(employee.DataDeAdmissao).TotalDays / 365.0);
+            return result > 0.0f ? result : 0.0f;
+        }
 
         public decimal GetSalaryConvert(string salary)
         {
-            var result = String.Empty;
+            var result = string.Empty;
 
             if (salary is { })
             {
-                result = salary.Where(caracter => Char.IsDigit(caracter) || Char.IsPunctuation(caracter)).Aggregate(result, (current, caracter) => current + caracter);
+                result = salary.Where(caracter => char.IsDigit(caracter) || char.IsPunctuation(caracter)).Aggregate(result, (current, caracter) => current + caracter);
                 return Convert.ToDecimal(result);
             }
             
