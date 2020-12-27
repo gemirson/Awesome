@@ -4,7 +4,7 @@
     {
         public decimal CalculateBonus(int weightPosition, int weightSalary, int weightYear,decimal salary)
         {
-            return (salary*(weightPosition + weightSalary) * 12) / weightYear;
+            return (salary*(weightPosition + weightYear) * 12) / weightSalary;
         }
     }
 }
