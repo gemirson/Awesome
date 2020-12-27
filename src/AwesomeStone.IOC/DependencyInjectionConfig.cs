@@ -24,12 +24,13 @@ namespace AwesomeStone.IOC
             services.AddScoped<IWeigth, WeigthAdmission>();
             services.AddScoped<IWeigth, WeigthSalary>();
             services.AddScoped<IBonus, BonusStrategy>();
-            services.AddScoped<ResponseResult>();
-
             services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddScoped<IEmployeeRepository,  EmployeeRepository>();
             services.AddScoped<IBusinessRepository, BusinessRepository>();
+
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IApplicationEmployeeContainer, ApplicationEmployeeContainer>();
             services.AddScoped<IEmployeesApplication, EmployeeApplication>();
             services.AddScoped<IBusinessApplication, BusinessApplication>();
            
