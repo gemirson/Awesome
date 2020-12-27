@@ -20,34 +20,33 @@ namespace AwesomeStone.Application
     public class EmployeeApplication : IEmployeesApplication
     {
         private readonly IEmployeeService _employeesService;
-        private readonly ResponseResult _response;
-        private readonly ILogger<EmployeeApplication> _logger;
-        private readonly IUnitOfWork _unitOfWork;
         private readonly IOptions<CacheConfig> _cacheConfig;
+        private readonly IApplicationEmployeeContainer _employeeContainer;
+        private readonly ResponseResult _response;
 
-        public EmployeeApplication(IEmployeeService employeesService, ILogger<EmployeeApplication> logger, IUnitOfWork unitOfWork, IOptions<CacheConfig> cacheConfig)
+        public EmployeeApplication(IApplicationEmployeeContainer applicationEmployeeContainer, IEmployeeService employeesService, IOptions<CacheConfig> cacheConfig) 
         {
             _employeesService = employeesService;
-            _response = new ResponseResult();
-            _logger = logger;
-            _unitOfWork = unitOfWork;
             _cacheConfig = cacheConfig;
-            _logger.LogDebug(default(EventId), $"NLog injected into {nameof(EmployeeApplication)}");
+            _employeeContainer = applicationEmployeeContainer;
+            _employeeContainer.Logger.LogDebug(default(EventId), $"NLog injected into {nameof(EmployeeApplication)}");
+            _response = new ResponseResult();
         }
-   
-
+     
         public async Task<ResponseResult> AddAsync(IEnumerable<EmployeeRequest> employeesRequest)
         {
+
             try
             {
                 var listParticipation = new List<ViewParticipation>();
-                var operationProfit = _unitOfWork.Business.GetAll(_cacheConfig.Value.Key);
+                var operationProfit = _employeeContainer.UnitOfWork.Business.GetAll(_cacheConfig.Value.Key);
                 if (operationProfit is null)
                 {
                     _response.AddNotification(new Notification(nameof(EmployeeApplication),
                         $"Falha na operação, o valor disponibilizado não pode ser nulo"));
                     return _response;
                 }
+
                 await CreateEmployeesAsync(employeesRequest, operationProfit, listParticipation);
                 FillViewParticipationEmployee(listParticipation, operationProfit);
             }
@@ -55,10 +54,11 @@ namespace AwesomeStone.Application
             {
                 _response.AddNotification(new Notification(nameof(EmployeeApplication),
                     $"Falha na operação {ex.Message}"));
-                _logger.LogError(default(EventId),
+                _employeeContainer.Logger.LogError(default(EventId),
                     $"Found fails to {nameof(EmployeeApplication)} in AddAsync {ex.Message}");
                 throw;
             }
+            
             return _response;
         }
 
@@ -66,33 +66,38 @@ namespace AwesomeStone.Application
             OperationProfit operationProfit,
             ICollection<ViewParticipation> listParticipation)
         {
-            foreach (var employeeRequest in employeesRequest)
+            if (employeesRequest is { })
             {
-                employeeRequest.Validate();
-
-                if (employeeRequest.Notifications.Any())
+                foreach (var employeeRequest in employeesRequest)
                 {
-                    _response.AddNotifications(employeeRequest.Notifications);
-                    return true;
+                    employeeRequest.Validate();
+
+                    if (employeeRequest.Notifications.Any())
+                    {
+                        _response.AddNotifications(employeeRequest.Notifications);
+                        return true;
+                    }
+
+                    var entidade = new Employee(employeeRequest.Matricula, employeeRequest.Nome, employeeRequest.Area,
+                        employeeRequest.Cargo, _employeesService.GetSalaryConvert(employeeRequest.SalarioBruto), 0.0m,
+                        employeeRequest.DataDeAdmissao);
+
+                    if (!VerifyBonusValueEmployee(operationProfit, entidade, out var bonus))
+                    {
+                        break;
+                    }
+
+                    entidade.SetBonus(bonus);
+
+                    await _employeeContainer.UnitOfWork.Employee.AddAsync(entidade);
+
+                    FillParticipation(listParticipation, employeeRequest, bonus);
                 }
 
-                var entidade = new Employee(employeeRequest.Matricula, employeeRequest.Nome, employeeRequest.Area,
-                    employeeRequest.Cargo, _employeesService.GetSalaryConvert(employeeRequest.SalarioBruto), 0.0m,
-                    employeeRequest.DataDeAdmissao);
-
-                if (VerifyBonusValueEmployee(operationProfit, entidade, out var bonus))
-                {
-                    break;
-                }
-
-                entidade.SetBonus(bonus);
-
-                await _unitOfWork.Employee.AddAsync(entidade);
-
-                FillParticipation(listParticipation, employeeRequest, bonus);
+                return false;
             }
 
-            return false;
+            throw new NullReferenceException("Error objeto passado nulo");
         }
 
         private static void FillParticipation(ICollection<ViewParticipation> listParticipation, EmployeeRequest employeeRequest, decimal bonus)
@@ -109,10 +114,10 @@ namespace AwesomeStone.Application
         {
             bonus = _employeesService.GetBonus(entidade);
 
-            if (!operationProfit.CheckDistributed_Value(bonus)) return false;
+            if (!operationProfit.CheckDistributed_Value(bonus)) return true;
             _response.AddNotification(new Notification(nameof(EmployeeApplication),
-                $"Falha na operação, o valor disponibilizado {bonus} é insuficiente para atender todos o funcionarios  "));
-            return true;
+                $"Falha na operação, o valor disponibilizado {operationProfit.Total_Available()} é insuficiente para atender todos o funcionarios {bonus}  "));
+            return false;
 
         }
 
@@ -133,7 +138,7 @@ namespace AwesomeStone.Application
         {
             try
             {
-                var employees = await _unitOfWork.Employee.GetAllAsync();
+                var employees = await _employeeContainer.UnitOfWork.Employee.GetAllAsync();
                 var listParticipation = employees.Select(employee => new ViewParticipation {Matricula = employee.Matricula, Nome = employee.Nome, ValorDaParticipação = $"{employee.Bonus:C}"}).ToList();
 
                 _response.AddValue(new Data
@@ -146,7 +151,7 @@ namespace AwesomeStone.Application
             catch (Exception ex)
             {
                 _response.AddNotification(new Notification(nameof(EmployeeApplication), $"Falha na operação {ex.Message}"));
-                _logger.LogError(default(EventId), $"Found fails to {nameof(EmployeeApplication)} in GetAllAsync {ex.Message}");
+                _employeeContainer.Logger.LogError(default(EventId), $"Found fails to {nameof(EmployeeApplication)} in GetAllAsync {ex.Message}");
                 throw;
                 
             }
