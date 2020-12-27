@@ -1,6 +1,7 @@
 ﻿using AwesomeStone.Core.Entidades;
 using AwesomeStone.Core.Intefaces.Employees;
 using System;
+using System.Linq;
 
 namespace AwesomeStone.Core.Servicos
 {
@@ -37,16 +38,15 @@ namespace AwesomeStone.Core.Servicos
 
         public decimal GetSalaryConvert(string salary)
         {
-            string result = String.Empty;
+            var result = String.Empty;
 
-            foreach (var caracter in salary)
+            if (salary is { })
             {
-                if (Char.IsDigit(caracter) || Char.IsPunctuation(caracter))
-                {
-                    result += caracter;
-                }
+                result = salary.Where(caracter => Char.IsDigit(caracter) || Char.IsPunctuation(caracter)).Aggregate(result, (current, caracter) => current + caracter);
+                return Convert.ToDecimal(result);
             }
-            return Convert.ToDecimal(result);
+            
+            throw new NullReferenceException("Error o valor do salario é nulo");
         }
     }
 }
