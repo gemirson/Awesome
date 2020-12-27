@@ -15,21 +15,20 @@ namespace AwesomeStone.Application
     public class BusinessApplication : IBusinessApplication
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly ResponseResult _response;
         private readonly ILogger<BusinessApplication> _logger;
         private readonly IOptions<CacheConfig> _cacheConfig;
 
-        public BusinessApplication(IUnitOfWork unitOfWork, ResponseResult response, ILogger<BusinessApplication> logger, IOptions<CacheConfig> cacheConfig)
+        public BusinessApplication(IUnitOfWork unitOfWork, ILogger<BusinessApplication> logger, IOptions<CacheConfig> cacheConfig)
         {
             _unitOfWork = unitOfWork;
-            _response = response;
-            _logger = logger;
+           _logger = logger;
             _cacheConfig = cacheConfig;
             _logger.LogDebug(default(EventId), $"NLog injected into {nameof(BusinessApplication)}");
         }
 
         public ResponseResult Add(OperationProfitRequest operationProfitRequest)
         {
+            var _response = new ResponseResult();
             try
             {
                 operationProfitRequest.Validate();

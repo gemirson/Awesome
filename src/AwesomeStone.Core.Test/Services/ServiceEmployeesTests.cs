@@ -46,5 +46,21 @@ namespace AwesomeStone.Core.Tests.Services
 
         }
 
+        [Fact(DisplayName = "Convert o salario bruto para padrão em decimal com valor nulo")]
+        [Trait("Servico Employee", "O valor do salario passado é nulo")]
+        public void ServiceEmployee_ConverterSalarioBrutoParaDecimalValorPassadonulo_RetornarNullReferenceException()
+        {
+            // Arrange
+            var salary = String.Empty;
+            salary = null;
+            var expected = "Error o valor do salario é nulo";
+            // Act
+            var responseResult = Assert.Throws<NullReferenceException>(() => _sut.GetSalaryConvert(salary));
+
+            // Assert
+            Assert.Equal(expected, responseResult.Message);
+
+        }
+
     }
 }
