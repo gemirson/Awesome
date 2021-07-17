@@ -29,8 +29,7 @@ namespace AwesomeStone.API.Controllers
             _employeesApplication = employeesApplication;
             _logger.LogDebug(default(EventId), $"NLog injected into {nameof(EmployeeController)}");
         }
-                    
-
+        
         /// <summary>
         /// Distribuir bonus entre funcionarios
         /// </summary>

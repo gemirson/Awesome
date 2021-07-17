@@ -12,6 +12,7 @@ namespace AwesomeStone.Core.Servicos
                 return new[]
                 {
 
+
                         new WeigthCondition(m => m > 8, m => 5 ),
                         new WeigthCondition(m => m< 8 && m> 3, m=>3),
                         new WeigthCondition(m => m< 3 && m> 1, m => 2),
@@ -24,6 +25,7 @@ namespace AwesomeStone.Core.Servicos
         public int GetWeigth(float parameter)
         {
             var executor = WeigthConditions?.First(t => t.CanApply(parameter));
+            
             return executor.Transform(parameter);
 
         }
