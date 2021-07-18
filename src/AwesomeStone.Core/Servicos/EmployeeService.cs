@@ -35,7 +35,7 @@ namespace AwesomeStone.Core.Servicos
 
         private static float Calculate_Number_Salary(Employee employee)
         {
-            if (MinimumSalary == 0) throw new ArgumentNullException("error salario minimi invalido");
+            if (MinimumSalary == 0) throw new ArgumentNullException("employee","error salario minimi invalido");
             if (employee is { }) return (float) (employee.SalarioBruto / MinimumSalary);
             return 0.0f;
         }
@@ -56,7 +56,7 @@ namespace AwesomeStone.Core.Servicos
                 return Convert.ToDecimal(result);
             }
             
-            throw new ArgumentNullException("Error o valor do salario é nulo");
+            throw new ArgumentNullException("salary","Error o valor do salario é nulo");
         }
     }
 }
