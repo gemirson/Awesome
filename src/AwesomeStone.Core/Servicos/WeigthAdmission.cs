@@ -25,7 +25,8 @@ namespace AwesomeStone.Core.Servicos
         public int GetWeigth(float parameter)
         {
             var executor = WeigthConditions?.First(t => t.CanApply(parameter));
-            
+
+            if (executor is null) return 0;
             return executor.Transform(parameter);
 
         }
