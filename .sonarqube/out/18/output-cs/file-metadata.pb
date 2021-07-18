@@ -1,0 +1,11 @@
+w
+nC:\Users\gemir\source\repos\AwesomeStone\AwesomeStone\src\AwesomeStone.Core.UnitTest\Entidade\EmployeeTests.csutf-8
+vC:\Users\gemir\source\repos\AwesomeStone\AwesomeStone\src\AwesomeStone.Core.UnitTest\Entidade\Operation_ProfitTests.csutf-8|
+sC:\Users\gemir\source\repos\AwesomeStone\AwesomeStone\src\AwesomeStone.Core.UnitTest\Services\BonusStrategyTests.csutf-8|
+sC:\Users\gemir\source\repos\AwesomeStone\AwesomeStone\src\AwesomeStone.Core.UnitTest\Services\OfficeFactoryTests.csutf-8
+vC:\Users\gemir\source\repos\AwesomeStone\AwesomeStone\src\AwesomeStone.Core.UnitTest\Services\ServiceEmployeesTests.csutf-8~
+uC:\Users\gemir\source\repos\AwesomeStone\AwesomeStone\src\AwesomeStone.Core.UnitTest\Services\WeigthAdmissionTests.csutf-8{
+rC:\Users\gemir\source\repos\AwesomeStone\AwesomeStone\src\AwesomeStone.Core.UnitTest\Services\WeigthSalaryTests.csutf-8}
+rC:\Users\gemir\.nuget\packages\microsoft.net.test.sdk\16.7.1\build\netcoreapp2.1\Microsoft.NET.Test.Sdk.Program.csutf-8§
+›C:\Users\gemir\source\repos\AwesomeStone\AwesomeStone\src\AwesomeStone.Core.UnitTest\obj\Debug\netcoreapp3.1\.NETCoreApp,Version=v3.1.AssemblyAttributes.csutf-8¤
+˜C:\Users\gemir\source\repos\AwesomeStone\AwesomeStone\src\AwesomeStone.Core.UnitTest\obj\Debug\netcoreapp3.1\AwesomeStone.Core.UnitTests.AssemblyInfo.csutf-8

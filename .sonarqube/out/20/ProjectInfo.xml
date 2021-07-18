@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProjectInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sonarsource.com/msbuild/integration/2015/1">
+  <ProjectName>AwesomeStone.IOC</ProjectName>
+  <ProjectLanguage>C#</ProjectLanguage>
+  <ProjectType>Product</ProjectType>
+  <ProjectGuid>4e5e390b-469d-4ca4-a1dc-aaf72982f128</ProjectGuid>
+  <FullPath>C:\Users\gemir\source\repos\AwesomeStone\AwesomeStone\src\AwesomeStone.IOC\AwesomeStone.IOC.csproj</FullPath>
+  <IsExcluded>false</IsExcluded>
+  <AnalysisResults>
+    <AnalysisResult Id="FilesToAnalyze" Location="C:\Users\gemir\source\repos\AwesomeStone\AwesomeStone\.sonarqube\conf\20\FilesToAnalyze.txt" />
+  </AnalysisResults>
+  <AnalysisSettings>
+    <Property Name="sonar.cs.roslyn.reportFilePaths">C:\Users\gemir\source\repos\AwesomeStone\AwesomeStone\src\AwesomeStone.IOC\bin\Debug\netcoreapp3.1\AwesomeStone.IOC.dll.RoslynCA.json|C:\Users\gemir\source\repos\AwesomeStone\AwesomeStone\src\AwesomeStone.IOC\bin\Debug\netcoreapp3.1\AwesomeStone.IOC.dll.RoslynCA.json</Property>
+    <Property Name="sonar.cs.analyzer.projectOutPaths">C:\Users\gemir\source\repos\AwesomeStone\AwesomeStone\.sonarqube\out\20</Property>
+  </AnalysisSettings>
+  <Configuration>Debug</Configuration>
+  <Platform>AnyCPU</Platform>
+  <TargetFramework>netcoreapp3.1</TargetFramework>
+</ProjectInfo>

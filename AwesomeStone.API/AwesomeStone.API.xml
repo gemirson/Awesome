@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AwesomeStone.API</name>
+    </assembly>
+    <members>
+        <member name="T:AwesomeStone.API.Controllers.BusinessController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AwesomeStone.API.Controllers.BusinessController.#ctor(Microsoft.Extensions.Logging.ILogger{AwesomeStone.API.Controllers.EmployeeController},AwesomeStone.Application.Interfaces.IBusinessApplication)">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+            <param name="businessAplication"></param>
+        </member>
+        <member name="M:AwesomeStone.API.Controllers.BusinessController.BonusCreate(AwesomeStone.Application.Command.Request.OperationProfitRequest)">
+             <summary>
+             Criar Bonus
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST /api/busines/business
+                 {
+                    "Bonus_Distribuided": "R$ 1000000",
+                    
+                 }
+                 
+             </remarks>        
+             <param name="Operation_ProfitRequest"></param>  
+        </member>
+        <member name="T:AwesomeStone.API.Controllers.EmployeeController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AwesomeStone.API.Controllers.EmployeeController.#ctor(Microsoft.Extensions.Logging.ILogger{AwesomeStone.API.Controllers.EmployeeController},AwesomeStone.Application.Interfaces.IEmployeesApplication)">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+            <param name="employeesApplication"></param>
+        </member>
+        <member name="M:AwesomeStone.API.Controllers.EmployeeController.BonusAsync(System.Collections.Generic.IEnumerable{AwesomeStone.Application.Command.Request.EmployeeRequest})">
+             <summary>
+             Distribuir bonus entre funcionarios
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST /api/employee/bonus
+                 {
+                    "matricula": "0009968",
+                    "nome": "Victor Wilson",
+                    "area": "Diretoria",
+                    "cargo": "Diretor Financeiro",
+                    "salario_bruto": "R$ 12.696,20",
+                    "data_de_admissao": "2012-01-05"
+                 }
+                 
+             </remarks>        
+             <param name="EmployeeRequest"></param>  
+        </member>
+        <member name="T:AwesomeStone.API.Middeware.ErrorHandlerMiddleware">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AwesomeStone.API.Middeware.ErrorHandlerMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate)">
+            <summary>
+            
+            </summary>
+            <param name="next"></param>
+        </member>
+        <member name="M:AwesomeStone.API.Middeware.ErrorHandlerMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AwesomeStone.API.Program">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AwesomeStone.API.Program.Main(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:AwesomeStone.API.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AwesomeStone.API.Startup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AwesomeStone.API.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:AwesomeStone.API.Startup.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AwesomeStone.API.Startup.ConfigureTestingServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:AwesomeStone.API.Startup.ConfigureDevelopmentServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:AwesomeStone.API.Startup.ConfigureProductionServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:AwesomeStone.API.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            /
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:AwesomeStone.API.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+    </members>
+</doc>
