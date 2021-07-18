@@ -2,18 +2,15 @@
 using AwesomeStone.Application.DTOs;
 using AwesomeStone.Application.Interfaces;
 using AwesomeStone.Core.Entidades;
-using AwesomeStone.Core.Intefaces;
-using AwesomeStone.Core.Intefaces.Business;
 using AwesomeStone.Core.Intefaces.Employees;
 using AwesomeStone.Core.Response;
-using AwesomeStone.Infra.Data.Interfaces;
 using Flunt.Notifications;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Options;
 
 namespace AwesomeStone.Application
 {
@@ -97,7 +94,7 @@ namespace AwesomeStone.Application
                 return false;
             }
 
-            throw new ArgumentNullException("Employee","Error objeto passado nulo");
+            throw new ArgumentNullException("employeesRequest", "Error objeto passado nulo");
         }
 
         private static void FillParticipation(ICollection<ViewParticipation> listParticipation, EmployeeRequest employeeRequest, decimal bonus)
