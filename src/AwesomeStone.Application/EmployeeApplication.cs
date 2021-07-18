@@ -97,7 +97,7 @@ namespace AwesomeStone.Application
                 return false;
             }
 
-            throw new ArgumentNullException("Error objeto passado nulo");
+            throw new ArgumentNullException("Employee","Error objeto passado nulo");
         }
 
         private static void FillParticipation(ICollection<ViewParticipation> listParticipation, EmployeeRequest employeeRequest, decimal bonus)
