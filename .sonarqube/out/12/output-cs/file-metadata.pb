@@ -1,0 +1,10 @@
+ú
+íC:\Users\gemir\source\repos\AwesomeStone\AwesomeStone\src\AwesomeStone.Application.UnitTests\CommandHandlers\Business\CriarBusinessHandlerTests.csutf-8£
+íC:\Users\gemir\source\repos\AwesomeStone\AwesomeStone\src\AwesomeStone.Application.UnitTests\CommandHandlers\Employee\CriarEmployeeHandlerTests.cswindows-1252Ç
+yC:\Users\gemir\source\repos\AwesomeStone\AwesomeStone\src\AwesomeStone.Application.UnitTests\Mocks\Loggers\MocksLogger.csutf-8ç
+ÉC:\Users\gemir\source\repos\AwesomeStone\AwesomeStone\src\AwesomeStone.Application.UnitTests\Mocks\Repository\BusinessRepository.csutf-8ç
+ÉC:\Users\gemir\source\repos\AwesomeStone\AwesomeStone\src\AwesomeStone.Application.UnitTests\Mocks\Repository\EmployeeRepository.csutf-8Ñ
+{C:\Users\gemir\source\repos\AwesomeStone\AwesomeStone\src\AwesomeStone.Application.UnitTests\Mocks\UnitOfWork\UnitOfWork.csutf-8}
+rC:\Users\gemir\.nuget\packages\microsoft.net.test.sdk\16.7.1\build\netcoreapp2.1\Microsoft.NET.Test.Sdk.Program.csutf-8Ø
+£C:\Users\gemir\source\repos\AwesomeStone\AwesomeStone\src\AwesomeStone.Application.UnitTests\obj\Debug\netcoreapp3.1\.NETCoreApp,Version=v3.1.AssemblyAttributes.csutf-8≥
+ßC:\Users\gemir\source\repos\AwesomeStone\AwesomeStone\src\AwesomeStone.Application.UnitTests\obj\Debug\netcoreapp3.1\AwesomeStone.Application.UnitTests.AssemblyInfo.csutf-8
