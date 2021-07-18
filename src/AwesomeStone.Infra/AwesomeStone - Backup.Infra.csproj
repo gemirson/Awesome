@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+<<<<<<< Updated upstream
+    <PopertyGuid>a059ab76cf8f416bbc7e449c676cf6e4</PopertyGuid>
+=======
+    <Platforms>AnyCPU;ARM32</Platforms>
+>>>>>>> Stashed changes
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="3.1.10" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.11.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AwesomeStone.Core\AwesomeStone.Core.csproj" />
+    <ProjectReference Include="..\AwesomeStone.Core\AwesomeStone.Core.csproj" />
+  </ItemGroup>
+
+</Project>

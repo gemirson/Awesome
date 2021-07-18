@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <PorpetyGuid>b0b9ee63715b449e8818c1b0d22bffdc</PorpetyGuid>
   </PropertyGroup>
 
   <ItemGroup>

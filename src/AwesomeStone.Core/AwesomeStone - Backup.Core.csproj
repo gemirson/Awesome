@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+<<<<<<< Updated upstream
+    <PropertyGuid>6ed5b7aba7e444f492bb8193ef29bfff</PropertyGuid>
+=======
+    <Platforms>AnyCPU;ARM32</Platforms>
+>>>>>>> Stashed changes
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Flunt" Version="1.0.5" />
+    <PackageReference Include="MongoDB.Bson" Version="2.11.5" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+<<<<<<< Updated upstream
+    <PorpetyGuid>b0b9ee63715b449e8818c1b0d22bffdc</PorpetyGuid>
+=======
+    <Platforms>AnyCPU;ARM32</Platforms>
+>>>>>>> Stashed changes
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AwesomeStone.Application\AwesomeStone.Application.csproj" />
+    <ProjectReference Include="..\AwesomeStone.Core\AwesomeStone.Core.csproj" />
+    <ProjectReference Include="..\AwesomeStone.Infra\AwesomeStone.Infra.csproj" />
+  </ItemGroup>
+
+</Project>

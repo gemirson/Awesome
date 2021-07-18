@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 
 namespace AwesomeStone.Core.Entidades
 {
+
+    [ExcludeFromCodeCoverage]
     public class Validacoes
     {
         public static void ValidarSeIgual(object object1, object object2, string mensagem)

@@ -1,0 +1,6 @@
+projectKey=stone
+serverUrl=http://localhost:9000
+serverVersion=9.0.0.45539
+dashboardUrl=http://localhost:9000/dashboard?id=stone
+ceTaskId=AXq5doAwm66tkIkVvz_5
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXq5doAwm66tkIkVvz_5
