@@ -3,6 +3,7 @@ using Flunt.Notifications;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace AwesomeStone.API.Middeware
     /// <summary>
     /// 
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class ErrorHandlerMiddleware
     {
         private readonly RequestDelegate _next;

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace AwesomeStone.Application.DTOs
 {
+    [ExcludeFromCodeCoverage]
     internal class Data
     {
         public IEnumerable<ViewParticipation> Participações { get;set;}

@@ -6,13 +6,16 @@ using Microsoft.Extensions.Logging;
 using NLog;
 using NLog.Web;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace AwesomeStone.API
 {
     /// <summary>
     /// 
     /// </summary>
-    public class Program
+    /// 
+    [ExcludeFromCodeCoverage]
+    public static class Program
     {
         /// <summary>
         /// 

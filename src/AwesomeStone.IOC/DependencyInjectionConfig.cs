@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace AwesomeStone.IOC
 {
+    
     public static class DependencyInjectionConfig
     {
         public static IServiceCollection ResolveDependencies(this IServiceCollection services, IConfiguration config)

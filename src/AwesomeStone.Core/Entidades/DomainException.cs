@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace AwesomeStone.Core.Entidades
 {
+    [ExcludeFromCodeCoverage]
     public class DomainException : Exception
     {
         public DomainException()
